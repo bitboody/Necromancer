@@ -46,7 +46,7 @@ net
     }
 
     function prompt() {
-      readline.question(">> \n", (msg) => {
+      readline.question(">> ", (msg) => {
         broadcast(msg);
         // readline.close();
         return prompt();
