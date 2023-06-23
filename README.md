@@ -17,8 +17,8 @@ Attempt to create a simple Windows botnet for educational purposes
 
 <h2 id="Prerequisites">Prerequisites & tools</h2>
 - <a href="https://nodejs.org/en/download">Node</a>
-- <a href="https://www.npmjs.com/package/typescript">pkg</a> for compiling client to exe.
-- <a href="https://github.com/s-h-a-d-o-w/create-nodew-exe">pkg</a> for making terminal hidden.
+- <a href="https://github.com/vercel/pkg">pkg</a>
+- <a href="https://github.com/s-h-a-d-o-w/create-nodew-exe">pkg</a>
 
 ---------------
 <h2 id="Getting-started">Getting started</h2>
