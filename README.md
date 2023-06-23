@@ -5,7 +5,6 @@ Attempt to create a simple Windows botnet for educational purposes
 <br>
 <img src="https://img.shields.io/github/license/brplcc/botnet">
 <img src="https://img.shields.io/github/last-commit/brplcc/botnet">
-<img src="https://img.shields.io/github/languages/top/brplcc/botnet">
 <br>
 </div>
 
@@ -16,11 +15,11 @@ Attempt to create a simple Windows botnet for educational purposes
 
 
 <h2 id="Prerequisites">Prerequisites & tools</h2>
-- <a href="https://nodejs.org/en/download">Node</a>
+• <a href="https://nodejs.org/en/download">Node</a>
 <br/>
-- <a href="https://github.com/vercel/pkg">pkg</a>
+• <a href="https://github.com/vercel/pkg">pkg</a>
 <br/>
-- <a href="https://github.com/s-h-a-d-o-w/create-nodew-exe">create-nodew-exe</a>
+• <a href="https://github.com/s-h-a-d-o-w/create-nodew-exe">create-nodew-exe</a>
 
 ---------------
 <h2 id="Getting-started">Getting started</h2>
