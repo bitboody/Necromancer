@@ -3,7 +3,7 @@
 Attempt to create a simple Windows botnet for educational purposes
 <br>
 <br>
-<img src="https://img.shields.io/github/license/brplcc/botnet">
+<img src="">
 <img src="https://img.shields.io/github/last-commit/brplcc/botnet">
 <br>
 </div>
