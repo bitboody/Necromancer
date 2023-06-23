@@ -1,6 +1,6 @@
 <div align="center">
 <h1>BotNet</h1>
-Attempt to create a simple Windows botnet for educational purposes
+Simple Windows botnet for educational purposes
 <br>
 <br>
 <img src="https://img.shields.io/github/license/brplcc/botnet">
