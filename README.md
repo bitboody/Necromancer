@@ -17,8 +17,10 @@ Attempt to create a simple Windows botnet for educational purposes
 
 <h2 id="Prerequisites">Prerequisites & tools</h2>
 - <a href="https://nodejs.org/en/download">Node</a>
+<br/>
 - <a href="https://github.com/vercel/pkg">pkg</a>
-- <a href="https://github.com/s-h-a-d-o-w/create-nodew-exe">pkg</a>
+<br/>
+- <a href="https://github.com/s-h-a-d-o-w/create-nodew-exe">create-nodew-exe</a>
 
 ---------------
 <h2 id="Getting-started">Getting started</h2>
