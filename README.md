@@ -10,7 +10,7 @@ Attempt to create a simple Windows botnet for educational purposes
 
 <div align="center">
 <a href="#Prerequisites">Prerequisites & tools</a> •
-<a href="#getting-started">Getting started</a> •
+<a href="#getting-started">Getting started</a>
 </div>
 
 
