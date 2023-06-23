@@ -14,7 +14,6 @@ const PORT = process.env.PORT;
 const HOST = process.env.HOST;
 
 const client = new net.Socket();
-
 function connect() {
   client.connect(PORT, HOST, () => {
     // console.log(`Connected to ${host}:${port}`);
@@ -44,7 +43,7 @@ client.on("data", (data) => {
 });
 
 client.on("close", (e) => {
-  console.log(`${HOST}:${PORT} not found. Attempting to reconnect.`);
+  // console.log(`${HOST}:${PORT} not found. Attempting to reconnect.`);
   client.setTimeout(5000, () => {
     client.connect(PORT, HOST);
   });
