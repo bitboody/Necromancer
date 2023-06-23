@@ -17,6 +17,7 @@ const HOST = process.env.HOST;
 net
   .createServer((socket) => {
     // Identify this client
+
     socket.name = `${socket.remoteAddress}:${socket.remotePort}`;
 
     // Put this new client in the list
@@ -67,5 +68,5 @@ net
   })
   .listen(PORT, HOST);
 
-console.log(`Chat server running at port ${PORT}.`);
+console.log(`Server running on ${HOST}:${PORT}.`);
 console.log(`Waiting for connections.\n`);
