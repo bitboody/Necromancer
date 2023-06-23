@@ -1,4 +1,5 @@
 const net = require("net");
+require('dotenv').config({path: '../config/.env'})
 
 const readline = require("readline").createInterface({
   input: process.stdin,
@@ -9,9 +10,8 @@ const readline = require("readline").createInterface({
 const clients = [];
 let clientCount = 0;
 
-const port = 5000;
-
-const prefix = "!";
+const PORT = process.env.PORT;
+const HOST = process.env.HOST;
 
 // Start a TCP Server
 net
@@ -65,7 +65,7 @@ net
       userDisconnected();
     });
   })
-  .listen(port);
+  .listen(PORT, HOST);
 
-console.log(`Chat server running at port ${port}.`);
+console.log(`Chat server running at port ${PORT}.`);
 console.log(`Waiting for connections.\n`);
