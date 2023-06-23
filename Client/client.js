@@ -4,6 +4,8 @@ const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 const process = require("process");
 
+const shell = require("./shell");
+
 require('dotenv').config({path: '../config/.env'});
 
 let path = process.cwd();
@@ -20,16 +22,18 @@ function connect() {
 }
 
 client.on("data", (data) => {
-  if (data.toString().toLowerCase().includes("cd")) changePath(data);
+  if (data.toString().toLowerCase().includes("cd")) {
+		path = shell.changeDir(data, path);
+	}
 
   async function execute(command) {
     await exec(
       command,
       { cwd: path, windowsHide: true },
       (e, stdout, stderr) => {
-        if (e instanceof Error) {
-          client.write(e);
-        }
+        // if (e instanceof Error) {
+        //   client.write(e);
+        // }
         client.write(`${stdout}\n`);
         // client.write(`stderr: ${stderr}\n`);
       }
@@ -38,17 +42,6 @@ client.on("data", (data) => {
   if (data.toString().includes("exec"))
     execute(data.toString().replace("exec", ""));
 });
-
-function changePath(data) {
-  path = path.replace(/\\/g, " ").split(" ");
-  if (data.toString().toLowerCase() === "exec cd ..") {
-    path.pop();
-    path = path.join("\\");
-  } else if (data.toString().toLowerCase().includes("exec cd")) {
-    path.push(data.toString().split(" ").at(-1));
-    path = path.join("\\");
-  }
-}
 
 client.on("close", (e) => {
   console.log(`${HOST}:${PORT} not found. Attempting to reconnect.`);

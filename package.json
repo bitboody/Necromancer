@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/brplcc/botnet/issues"
   },
-  "homepage": "https://github.com/brplcc/botnet#readme"
+  "homepage": "https://github.com/brplcc/botnet#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
 }
