@@ -1,18 +1,20 @@
+const net = require("net");
+
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 const process = require("process");
 
-const net = require("net");
+require('dotenv').config({path: '../config/.env'});
 
 let path = process.cwd();
 
-const port = 5000;
-const host = "127.0.0.1";
+const PORT = process.env.PORT;
+const HOST = process.env.HOST;
 
 const client = new net.Socket();
 
 function connect() {
-  client.connect(port, host, () => {
+  client.connect(PORT, HOST, () => {
     // console.log(`Connected to ${host}:${port}`);
   });
 }
@@ -49,9 +51,9 @@ function changePath(data) {
 }
 
 client.on("close", (e) => {
-  console.log(`${host}:${port} not found. Attempting to reconnect.`);
+  console.log(`${HOST}:${PORT} not found. Attempting to reconnect.`);
   client.setTimeout(5000, () => {
-    client.connect(port, host);
+    client.connect(PORT, HOST);
   });
 });
 
@@ -61,4 +63,4 @@ client.on("error", (err) => {
   }, 10000);
 });
 
-client.connect(port, host);
+client.connect(PORT, HOST);
