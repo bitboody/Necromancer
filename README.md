@@ -1,6 +1,6 @@
 <div align="center">
-<h1>BotNet</h1>
-Simple Windows botnet for educational purposes
+<h1>Botnet</h1>
+Simple botnet made for educational purposes
 <br>
 <br>
 <img src="https://img.shields.io/github/license/brplcc/botnet">
@@ -24,10 +24,17 @@ Simple Windows botnet for educational purposes
 ---------------
 <h2 id="Getting-started">Getting started</h2>
 
-```bash 
+Also make sure to add the dotenv:
+- config/.env
+
+```ps 
 git clone https://github.com/brplcc/botnet.git
 cd botnet
 npm install
 ```
-Also make sure to add the dotenv:
-- config/.env
+
+To compile to Windows, MacOS or Linux
+
+```ps
+pkg . -t (target OS)
+```
