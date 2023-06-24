@@ -36,7 +36,6 @@ net
       if (clientCount < 1) console.log("Waiting for clients to connect.\n");
     }
 
-
     // Send a message to all clients
     function broadcast(message) {
       clients.forEach((client) => {
