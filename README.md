@@ -33,8 +33,14 @@ cd botnet
 npm install
 ```
 
-To compile to Windows, MacOS or Linux
+To compile to Windows, MacOS or Linux:
 
 ```ps
 pkg . -t (target OS)
+```
+
+To make the windows executable run in the background: 
+
+```ps
+create-nodew-exe (src) (dst)
 ```
