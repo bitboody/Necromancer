@@ -50,5 +50,6 @@ create-nodew-exe (src) (dst)
 
 ---------------
 
-<h2 id="about">About</h2>h2>
-This project started in hopes to sharpen my skills at TCP networking, and because I found the topic interesting. This was made for educational purposes only.
+<h2 id="about">About</h2>
+
+I started this project to improve my TCP networking abilities and because I was interested in the subject. I am not liable for any perceived damages or harm that may result from the improper use of this software; it was only created for educational purposes.
