@@ -24,8 +24,10 @@ Simple botnet made for educational purposes
 ---------------
 <h2 id="Getting-started">Getting started</h2>
 
-Also make sure to add the dotenv:
+Also make sure to add the dotenv file at:
 - config/.env
+
+Use example.env as reference.
 
 ```ps 
 git clone https://github.com/brplcc/botnet.git
@@ -33,13 +35,13 @@ cd botnet
 npm install
 ```
 
-To compile to Windows, MacOS or Linux:
+To compile to Windows:
 
 ```ps
-pkg . -t (target OS)
+pkg .
 ```
 
-To make the windows executable run in the background: 
+To make the Windows executable run in the background: 
 
 ```ps
 create-nodew-exe (src) (dst)
