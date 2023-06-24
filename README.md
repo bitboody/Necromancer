@@ -9,12 +9,12 @@ Simple botnet made for educational purposes
 </div>
 
 <div align="center">
-<a href="#Prerequisites">Prerequisites & tools</a> •
-<a href="#getting-started">Getting started</a>
+<a href="#prerequisites">Prerequisites & tools</a> •
+<a href="#getting-started">Getting started</a> •
+<a href="#about">About</a>
 </div>
 
-
-<h2 id="Prerequisites">Prerequisites & tools</h2>
+<h2 id="prerequisites">Prerequisites & tools</h2>
 • <a href="https://nodejs.org/en/download">Node</a>
 <br/>
 • <a href="https://github.com/vercel/pkg">pkg</a>
@@ -22,6 +22,7 @@ Simple botnet made for educational purposes
 • <a href="https://github.com/s-h-a-d-o-w/create-nodew-exe">create-nodew-exe</a>
 
 ---------------
+
 <h2 id="Getting-started">Getting started</h2>
 
 Also make sure to add the dotenv file at:
@@ -46,3 +47,8 @@ To make the Windows executable run in the background:
 ```ps
 create-nodew-exe (src) (dst)
 ```
+
+---------------
+
+<h2 id="about">About</h2>h2>
+This project started in hopes to sharpen my skills at TCP networking, and because I found the topic interesting. This was made for educational purposes only.
