@@ -1,6 +1,6 @@
 {
   "name": "botnet",
-  "bin": "Client/client.js",
+  "bin": "client/client.js",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -21,7 +21,7 @@
     "dotenv": "^16.3.1"
   },
   "pkg": {
-    "assets": ["Client/shell.js", "Config", "node_modules"],
+    "assets": ["client/shell.js", "config", "node_modules"],
     "targets": [
       "windows"
     ],
