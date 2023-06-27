@@ -28,13 +28,6 @@ net
 
 		prompt();
 		
-    // Remove the client from the list when it leaves
-    function userDisconnected() {
-      clients.splice(clients.indexOf(socket), 1);
-      clientCount--;
-      console.log(`User ${socket.name} has disconnected.\n`);
-      if (clientCount < 1) console.log("Waiting for clients to connect.\n");
-    }
 
     // Send a message to all clients
     function broadcast(message) {
@@ -53,15 +46,20 @@ net
       });
     }
 
+		// Remove the client from the list when it leaves
+		function userDisconnected() {
+			clients.splice(clients.indexOf(socket), 1);
+			clientCount--;
+			console.log(`User ${socket.name} has disconnected.\n`);
+			if (clientCount < 1) console.log("Waiting for clients to connect.\n");
+		}
+
     socket.on("data", function (data) {
       broadcast(socket.name + "> " + data, socket);
 			prompt();
     });
 
-    socket.on("end", () => {
-      userDisconnected();
-    });
-    socket.on("error", () => {
+    socket.on("error" || "end", () => {
       userDisconnected();
     });
   })
