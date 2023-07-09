@@ -6,7 +6,7 @@ const process = require("process");
 
 const shell = require("./shell");
 
-require('dotenv').config({path: '../config/.env'});
+require("dotenv").config({ path: __dirname+'./../config/.env' });
 
 let path = process.cwd();
 
@@ -22,8 +22,8 @@ function connect() {
 
 client.on("data", (data) => {
   if (data.toString().toLowerCase().includes("cd")) {
-		path = shell.changeDir(data, path);
-	}
+    path = shell.changeDir(data, path);
+  }
 
   async function execute(command) {
     await exec(

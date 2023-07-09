@@ -1,6 +1,6 @@
 {
   "name": "botnet",
-  "bin": "client/client.js",
+  "bin": "./client/client.js",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/brplcc/botnet.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "brplcc",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/brplcc/botnet/issues"
@@ -21,7 +21,7 @@
     "dotenv": "^16.3.1"
   },
   "pkg": {
-    "assets": ["client/shell.js", "config", "node_modules"],
+    "assets": ["./client/shell.js", "./config/.env", "./node_modules"],
     "targets": [
       "windows"
     ],
