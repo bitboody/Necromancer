@@ -11,7 +11,8 @@ Simple botnet made for educational purposes
 <div align="center">
 <a href="#prerequisites">Prerequisites & tools</a> •
 <a href="#getting-started">Getting started</a> •
-<a href="#about">About</a>
+<a href="#about">About</a> •
+<a href="#TODO">TODO</a>
 </div>
 
 <h2 id="prerequisites">Prerequisites & tools</h2>
@@ -52,4 +53,10 @@ create-nodew-exe (src) (dst)
 
 <h2 id="about">About</h2>
 
-I started this project to improve my TCP networking abilities and because I was interested in the subject. I am not liable for any perceived damages or harm that may result from the improper use of this software; it was only created for educational purposes.
+I started this project in hopes to improve my TCP networking abilities and because I was interested in the subject. I am not liable for any perceived damages or harm that may result from the improper use of this software; it was only created for educational purposes.
+
+---------------
+
+<h2 id="about">About</h2>
+
+- [ ] Migrate from hosting on localhost to private ip address.
