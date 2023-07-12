@@ -16,11 +16,11 @@ Simple botnet made for educational purposes
 </div>
 
 <h2 id="prerequisites">Prerequisites & tools</h2>
-• <a href="https://nodejs.org/en/download">Node</a>
+• <a href="https://nodejs.org/en/download">Node</a> for the runtime environment.
 <br/>
-• <a href="https://github.com/vercel/pkg">pkg</a>
+• <a href="https://github.com/vercel/pkg">pkg</a> for compiling the client to an executable.
 <br/>
-• <a href="https://github.com/s-h-a-d-o-w/create-nodew-exe">create-nodew-exe</a>
+• <a href="https://github.com/s-h-a-d-o-w/create-nodew-exe">create-nodew-exe</a> for making the executable silent.
 
 ---------------
 
