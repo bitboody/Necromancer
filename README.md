@@ -53,7 +53,7 @@ create-nodew-exe (src) (dst)
 
 <h2 id="about">About</h2>
 
-I started this project in hopes to improve my TCP networking abilities and because I was interested in the subject. I am not liable for any perceived damages or harm that may result from the improper use of this software; it was only created for educational purposes.
+I started this project in hopes to improve my TCP networking abilities and because I was interested in the subject. DISCLAIMER: I am not liable for any perceived damages or harm that may result from the improper use of this software; it was only created for educational purposes.
 
 ---------------
 
