@@ -17,7 +17,6 @@ const HOST = process.env.HOST;
 net
   .createServer((socket) => {
     // Identify this client
-
     socket.name = `${socket.remoteAddress}:${socket.remotePort}`;
 
     // Put this new client in the list
