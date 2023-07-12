@@ -1,5 +1,5 @@
 const net = require("net");
-require('dotenv').config({path: '../config/.env'})
+require("dotenv").config({ path: "../config/.env" });
 
 const readline = require("readline").createInterface({
   input: process.stdin,
@@ -26,8 +26,7 @@ net
     clientCount++;
     console.log(`User ${socket.name} has connected.\n`);
 
-		prompt();
-		
+    prompt();
 
     // Send a message to all clients
     function broadcast(message) {
@@ -46,17 +45,17 @@ net
       });
     }
 
-		// Remove the client from the list when it leaves
-		function userDisconnected() {
-			clients.splice(clients.indexOf(socket), 1);
-			clientCount--;
-			console.log(`User ${socket.name} has disconnected.\n`);
-			if (clientCount < 1) console.log("Waiting for clients to connect.\n");
-		}
+    // Remove the client from the list when it leaves
+    function userDisconnected() {
+      clients.splice(clients.indexOf(socket), 1);
+      clientCount--;
+      console.log(`User ${socket.name} has disconnected.\n`);
+      if (clientCount < 1) console.log("Waiting for clients to connect.\n");
+    }
 
     socket.on("data", function (data) {
       broadcast(socket.name + "> " + data, socket);
-			prompt();
+      prompt();
     });
 
     socket.on("error" || "end", () => {
