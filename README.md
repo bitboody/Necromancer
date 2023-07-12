@@ -59,4 +59,4 @@ I started this project in hopes to improve my TCP networking abilities and becau
 
 <h2 id="TODO">TODO</h2>
 
-- [ ] Migrate from hosting on localhost to private ip address.
+- [ ] Get it to work online instead of localhost.
