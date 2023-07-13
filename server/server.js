@@ -46,15 +46,14 @@ net
     }
 
     function prompt() {
-      readline.question(">> ", (msg) => {
+      readline.question("[BOTNET] ", (msg) => {
         broadcast(msg);
-        // readline.close();
-        return prompt();
+				return prompt();
       });
     }
 
     // Remove the client from the list when it leaves
-    function userDisconnected() {
+    function clientDisconnected() {
       clients.splice(clients.indexOf(socket), 1);
       clientCount--;
       console.log(`User ${socket.name} has disconnected.\n`);
@@ -63,12 +62,12 @@ net
     }
 
     socket.on("data", function (data) {
-      broadcast(socket.name + "> " + data, socket);
+      broadcast(`[CLIENT ${socket.name}]` + data, socket);
       prompt();
     });
 
     socket.on("error" || "end", () => {
-      userDisconnected();
+      clientDisconnected();
     });
   })
   .listen(PORT, HOST);
