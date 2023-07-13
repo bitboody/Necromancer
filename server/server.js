@@ -6,12 +6,22 @@ const readline = require("readline").createInterface({
   output: process.stdout,
 });
 
-// Keep track of the chat clients
+// Keep track of all clients
 const clients = [];
 let clientCount = 0;
 
 const PORT = process.env.PORT;
 const HOST = process.env.HOST;
+
+function setTerminalTitle() {
+  process.stdout.write(
+    String.fromCharCode(27) +
+      "]0;" +
+      `Botnet | Bots: ${clientCount}` +
+      String.fromCharCode(7)
+  );
+}
+setTerminalTitle();
 
 // Start a TCP Server
 net
@@ -25,14 +35,13 @@ net
     clientCount++;
     console.log(`User ${socket.name} has connected.\n`);
 
+		setTerminalTitle();
     prompt();
 
-    // Send a message to all clients
     function broadcast(message) {
       clients.forEach((client) => {
         client.write(message);
       });
-      // Log it to the server output too
       process.stdout.write(message);
     }
 
@@ -50,6 +59,7 @@ net
       clientCount--;
       console.log(`User ${socket.name} has disconnected.\n`);
       if (clientCount < 1) console.log("Waiting for clients to connect.\n");
+      setTerminalTitle();
     }
 
     socket.on("data", function (data) {
