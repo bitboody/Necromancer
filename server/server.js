@@ -23,7 +23,6 @@ function setTerminalTitle() {
 }
 setTerminalTitle();
 
-// Start a TCP Server
 net
   .createServer((socket) => {
     // Identify this client
@@ -33,7 +32,7 @@ net
     clients.push(socket);
 
     clientCount++;
-    console.log(`User ${socket.name} has connected.\n`);
+    console.log(`Client ${socket.name} has connected.\n`);
 
 		setTerminalTitle();
     prompt();
@@ -52,7 +51,6 @@ net
       });
     }
 
-    // Remove the client from the list when it leaves
     function clientDisconnected() {
       clients.splice(clients.indexOf(socket), 1);
       clientCount--;
