@@ -34,7 +34,7 @@ net
     clientCount++;
     console.log(`Client ${socket.name} has connected.\n`);
 
-		setTerminalTitle();
+    setTerminalTitle();
     prompt();
 
     function broadcast(message) {
@@ -47,7 +47,7 @@ net
     function prompt() {
       readline.question("[BOTNET] ", (msg) => {
         broadcast(msg);
-				return prompt();
+        return prompt();
       });
     }
 
