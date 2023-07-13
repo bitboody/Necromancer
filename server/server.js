@@ -41,7 +41,7 @@ net
       clients.forEach((client) => {
         client.write(message);
       });
-      process.stdout.write(message);
+      process.stdout.write("\n" + message);
     }
 
     function prompt() {
@@ -54,13 +54,13 @@ net
     function clientDisconnected() {
       clients.splice(clients.indexOf(socket), 1);
       clientCount--;
-      console.log(`User ${socket.name} has disconnected.\n`);
+      console.log(`Client ${socket.name} has disconnected.\n`);
       if (clientCount < 1) console.log("Waiting for clients to connect.\n");
       setTerminalTitle();
     }
 
-    socket.on("data", function (data) {
-      broadcast(`[CLIENT ${socket.name}]` + data, socket);
+    socket.on("data", (data) => {
+      broadcast(`[CLIENT ${socket.name}] ` + data, socket);
       prompt();
     });
 
