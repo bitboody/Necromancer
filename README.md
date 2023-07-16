@@ -60,3 +60,4 @@ I started this project in hopes to improve my TCP networking skills and because 
 <h2 id="TODO">TODO</h2>
 
 - [ ] Get it to work online instead of localhost.
+- [ ] Add DDOS attack feature (any kind).
