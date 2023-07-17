@@ -21,7 +21,7 @@ function connect() {
 }
 
 client.on("data", (data) => {
-  if (data.toString().toLowerCase().includes("cd")) {
+  if (data.toString().toLowerCase().startsWith("cd")) {
     path = shell.changeDir(data, path);
   }
 
@@ -38,7 +38,7 @@ client.on("data", (data) => {
       }
     );
   }
-  if (data.toString().includes("exec"))
+  if (data.toString().startsWith("exec"))
     execute(data.toString().replace("exec", ""));
 });
 
