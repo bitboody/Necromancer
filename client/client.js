@@ -21,7 +21,7 @@ function connect() {
 }
 
 client.on("data", (data) => {
-  if (data.toString().toLowerCase().startsWith("cd")) {
+  if (data.toString().startsWith("cd").toLowerCase()) {
     path = shell.changeDir(data, path);
   }
 

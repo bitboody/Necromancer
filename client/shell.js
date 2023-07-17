@@ -6,7 +6,7 @@ function changeDir(data, path) {
   if (data.toString().toLowerCase() === "exec cd ..") {
     path.pop();
     path = path.join("\\");
-  } else if (data.toString().toLowerCase().startsWith("exec cd")) {
+  } else if (data.toString().startsWith("exec cd").toLowerCase()) {
     path.push(data.toString().split(" ").at(-1));
     path = path.join("\\");
   }
