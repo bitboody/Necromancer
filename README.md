@@ -62,4 +62,5 @@ Special thanks to [Looseman](https://github.com/glitch-911) and [Scrippy](https:
 <h2 id="TODO">TODO</h2>
 
 - [X] Get it to work online instead of localhost.
+- [ ] Add an instances option where you can run commands on a certain number of machines instead of all.
 - [ ] Add DDOS attack feature (any kind).
