@@ -21,7 +21,7 @@
     "dotenv": "^16.3.1"
   },
   "pkg": {
-    "assets": ["./client/shell.js", "./config/.env", "./node_modules"],
+    "assets": ["./client/shell.js", "./config/.env"],
     "targets": [
       "windows"
     ],
