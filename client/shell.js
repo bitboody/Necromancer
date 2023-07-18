@@ -2,14 +2,15 @@
 const fs = require("fs");
 
 function changeDir(data, path) {
+  let dataStr = data.toString().toLowerCase();
   path = path.replace(/\\/g, " ").split(" ");
-  if (data.toString().toLowerCase() === "exec cd ..") {
+
+  if (dataStr.toLowerCase() === "exec cd ..") {
     path.pop();
     path = path.join("\\");
-  } else if (data.toString().toLowerCase().indexOf("cd") === 5) {
-    if (data.toString().toLowerCase().indexOf("to") === 8)
-      return data.toString().split(" ").at(-1);
-    path.push(data.toString().split(" ").at(-1));
+  } else if (dataStr.indexOf("cd") === 5) {
+    if (dataStr.indexOf("to") === 8) return dataStr.split(" ").at(-1);
+    path.push(dataStr.split(" ").at(-1));
     path = path.join("\\");
   }
   return path;

