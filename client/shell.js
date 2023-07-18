@@ -2,7 +2,7 @@
 const fs = require("fs");
 
 function changeDir(data, path) {
-  let dataStr = data.toString().toLowerCase();
+  const dataStr = data.toString().toLowerCase();
   path = path.replace(/\\/g, " ").split(" ");
 
   if (dataStr.toLowerCase() === "exec cd ..") {

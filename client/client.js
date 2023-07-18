@@ -22,7 +22,7 @@ function connect() {
 }
 
 client.on("data", (data) => {
-	let dataStr = data.toString().toLowerCase();
+	const dataStr = data.toString().toLowerCase();
   if (
     dataStr.startsWith("exec") &&
     dataStr.split(" ")[1] === "cd"
