@@ -43,7 +43,7 @@ To compile to Windows:
 pkg .
 ```
 
-To make the Windows executable run in the background: 
+To make the Windows executable run silently in the background: 
 
 ```ps
 create-nodew-exe (src) (dst)
@@ -62,5 +62,5 @@ Special thanks to [Looseman](https://github.com/glitch-911) and [Scrippy](https:
 <h2 id="TODO">TODO</h2>
 
 - [X] Get it to work online instead of localhost.
-- [ ] Add an instances option where you can run commands on a certain number of machines instead of all.
+- [ ] Add an instances option that limits how many machines will run a command.
 - [ ] Add DDOS attack feature (any kind).
