@@ -25,6 +25,6 @@
     "targets": [
       "windows"
     ],
-    "outputPath": "dist"
+    "outputPath": "bin"
   }
 }
