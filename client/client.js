@@ -15,8 +15,11 @@ const HOST = process.env.HOST;
 
 const client = new net.Socket();
 
-function connect() {
-	client.connect(PORT, HOST);
+function reconnect() {
+	setTimeout(() => {
+		// console.log("retrying...");
+		client.connect(PORT, HOST);
+	}, 10000);
 }
 
 client.on("data", (data) => {
@@ -38,15 +41,13 @@ client.on("data", (data) => {
 });
 
 client.on("close", () => {
-	setTimeout(() => {
-		connect();
-	}, 10000);
+	reconnect();
 });
 
-client.on("error", () => {
-	setTimeout(() => {
-		connect();
-	}, 10000);
+client.on("error", (err) => {
+	if (err.code == "ECONNREFUSED") {
+		reconnect();
+	}
 });
 
-connect();
+client.connect(PORT, HOST);
