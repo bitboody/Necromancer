@@ -6,6 +6,7 @@ Simple botnet made for educational purposes
 <img src="https://img.shields.io/github/license/brplcc/botnet">
 <img src="https://img.shields.io/github/last-commit/brplcc/botnet">
 <img src="https://img.shields.io/github/languages/code-size/brplcc/botnet">
+<img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg">
   
 
 <br>
