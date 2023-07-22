@@ -50,7 +50,7 @@ pkg .
 To make the Windows executable run silently in the background: 
 
 ```ps
-create-nodew-exe (src) (dst)
+create-nodew-exe <src> <dst>
 ```
 ---------------
 
@@ -60,8 +60,9 @@ Here is a list of some commands:
 
 | Command   | Functionality                               | Usage              |
 | --------- | ------------------------------------------- | ------------------ |
-| exec      | Executes shell commands remotely            | exec dir           |
-| instances | Limits number of machines running a command | instances (3)      |
+| exec      | Executes shell commands remotely            | exec <command>     |
+| instances | Limits number of machines running a command | instances <number> |
+| help      | Shows you how to use commands               | help <command>     |
 
 ---------------
 
