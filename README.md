@@ -5,12 +5,16 @@ Simple botnet made for educational purposes
 <br>
 <img src="https://img.shields.io/github/license/brplcc/botnet">
 <img src="https://img.shields.io/github/last-commit/brplcc/botnet">
+<img src="https://img.shields.io/github/languages/code-size/brplcc/botnet">
+  
+
 <br>
 </div>
 
 <div align="center">
 <a href="#prerequisites">Prerequisites & tools</a> •
 <a href="#getting-started">Getting started</a> •
+<a href="#commands">Commands</a> •
 <a href="#about">About</a> •
 <a href="#TODO">TODO</a>
 </div>
@@ -48,6 +52,16 @@ To make the Windows executable run silently in the background:
 ```ps
 create-nodew-exe (src) (dst)
 ```
+---------------
+
+<h2 id="commands">Commands</h2>
+
+Here is a list of some commands:
+
+| Command   | Functionality                               | Usage              |
+| --------- | ------------------------------------------- | ------------------ |
+| exec      | Executes shell commands remotely            | exec dir           |
+| instances | Limits number of machines running a command | instances (3)      |
 
 ---------------
 
