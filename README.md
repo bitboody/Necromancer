@@ -8,8 +8,8 @@ Simple botnet made for educational purposes
 <img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg">
   
 <br>
-</div>
 
+</div>
 <div align="center">
 <a href="#prerequisites">Prerequisites & tools</a> •
 <a href="#getting-started">Getting started</a> •
@@ -28,16 +28,14 @@ Simple botnet made for educational purposes
 
 <h2 id="Getting-started">Getting started</h2>
 
-Also make sure to add the dotenv file at:
-- config/.env
-
-Use example.env as reference.
-
 ```sh 
 git clone https://github.com/brplcc/botnet.git
 cd botnet
 npm install
 ```
+
+Use example.env as reference and make sure to add the dotenv file at:
+- config/.env
 
 To compile to Windows:
 
