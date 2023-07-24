@@ -7,7 +7,6 @@ Simple botnet made for educational purposes
 <img src="https://img.shields.io/github/languages/code-size/brplcc/botnet">
 <img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg">
   
-
 <br>
 </div>
 
@@ -15,8 +14,7 @@ Simple botnet made for educational purposes
 <a href="#prerequisites">Prerequisites & tools</a> •
 <a href="#getting-started">Getting started</a> •
 <a href="#commands">Commands</a> •
-<a href="#about">About</a> •
-<a href="#TODO">TODO</a>
+<a href="#about">About</a>
 </div>
 
 <h2 id="prerequisites">Prerequisites & tools</h2>
