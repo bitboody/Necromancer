@@ -60,9 +60,9 @@ Here is a list of some commands:
 
 | Command   | Functionality                               | Usage              |
 | --------- | ------------------------------------------- | ------------------ |
-| exec      | Executes shell commands remotely            | exec <command>     |
-| instances | Limits number of machines running a command | instances <number> |
-| help      | Shows you how to use commands               | help <command>     |
+| exec      | Executes shell commands remotely            | exec (command)     |
+| instances | Limits number of machines running a command | instances (number) |
+| help      | Shows you how to use commands               | help (command)     |
 
 ---------------
 
