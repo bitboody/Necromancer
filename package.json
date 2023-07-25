@@ -1,5 +1,6 @@
 {
   "name": "botnet",
+  "type": "module",
   "bin": "./client/client.js",
   "version": "1.0.0",
   "description": "",
