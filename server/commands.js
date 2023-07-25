@@ -1,10 +1,11 @@
 import readline from "readline";
+import fs from "fs";
+import { clientModules, broadcast } from "./server.js"
+
 const rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
 });
-import fs from "fs";
-import { clientModules, broadcast } from "./server.js"
 
 const help = fs.readFileSync("../config/help", "utf8");
 

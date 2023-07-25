@@ -1,6 +1,7 @@
 import net from "net";
 import prompt from "./commands.js";
 import dotenv from "dotenv";
+
 dotenv.config({ path: "../config/.env" });
 
 let clientCount = 0;
@@ -37,13 +38,15 @@ net
 		socket.name = `${socket.remoteAddress}:${socket.remotePort}`;
 
 		// On client connect
-		clientModules.clients.push(socket);
 
+		clientModules.clients.push(socket);
 		clientCount++;
+
 		clientModules.clientInstances = [...clientModules.clients];
+		setTerminalTitle();
+
 		console.log(`Client ${socket.name} has connected.\n`);
 
-		setTerminalTitle();
 		prompt();
 
 		socket.on("data", (data) => {
