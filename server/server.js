@@ -1,11 +1,17 @@
-const net = require("net");
-const commands = require("./commands.js");
-require("dotenv").config({ path: "../config/.env" });
+import net from "net";
+import prompt from "./commands.js";
+import dotenv from "dotenv";
 
-// Keep track of all clients
-const clients = [];
-let clientInstances = [...clients];
+dotenv.config({ path: "../config/.env" });
+
 let clientCount = 0;
+let clients, clientInstances, silent;
+
+const clientModules = {
+	clients: (clients = []),
+	clientInstances: clientInstances,
+	silent: (silent = false),
+};
 
 const PORT = process.env.PORT;
 const HOST = process.env.HOST;
@@ -20,47 +26,51 @@ function setTerminalTitle() {
 }
 setTerminalTitle();
 
+function broadcast(message) {
+	clientModules.clientInstances.forEach((client) => {
+		client.write(message);
+	});
+	process.stdout.write("\n" + message);
+}
+
 net
 	.createServer((socket) => {
 		// Identify client
 		socket.name = `${socket.remoteAddress}:${socket.remotePort}`;
 
 		// On client connect
-		clients.push(socket);
-
+		clientModules.clients.push(socket);
 		clientCount++;
-		clientInstances = [...clients];
-		console.log(`Client ${socket.name} has connected.\n`);
 
+		clientModules.clientInstances = [...clientModules.clients];
 		setTerminalTitle();
-		commands.prompt();
 
-		exports.broadcast = function broadcast(message) {
-			clientInstances.forEach((client) => {
-				client.write(message);
-			});
-			process.stdout.write("\n" + message);
-		};
+		console.log(`\nClient ${socket.name} has connected.\n`);
 
-		function clientDisconnected() {
-			clients.splice(clients.indexOf(socket), 1);
-			clientCount--;
-			clientInstances = [...clients];
-			console.log(`Client ${socket.name} has disconnected.\n`);
-			if (clientCount < 1) console.log("Waiting for clients to connect.\n");
-			setTerminalTitle();
-		}
+		prompt();
 
 		socket.on("data", (data) => {
-			exports.broadcast(`[CLIENT ${socket.name}] ` + data, socket);
-			commands.prompt();
+			if (!clientModules.silent)
+				broadcast(`[CLIENT ${socket.name}] ` + data, socket);
+			prompt();
 		});
 
 		socket.on("error" || "end", () => {
 			clientDisconnected();
 		});
+
+		function clientDisconnected() {
+			clientModules.clients.splice(clientModules.clients.indexOf(socket), 1);
+			clientCount--;
+			clientModules.clientInstances = [...clientModules.clients];
+			console.log(`\nClient ${socket.name} has disconnected.\n`);
+			if (clientCount < 1) console.log("Waiting for clients to connect.");
+			setTerminalTitle();
+		}
 	})
 	.listen(PORT, HOST);
 
 console.log(`Server running on ${HOST}:${PORT}.`);
-console.log(`Waiting for connections.\n`);
+console.log(`Waiting for connections.`);
+
+export { clientModules, broadcast };

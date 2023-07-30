@@ -1,7 +1,5 @@
 // This file contains hacks and workarounds for Powershell
-const fs = require("fs");
-
-function changeDir(data, path) {
+export default function changeDir(data, path) {
 	const dataStr = data.toString().toLowerCase();
 	path = path.replace(/\\/g, " ").split(" ");
 
@@ -15,7 +13,3 @@ function changeDir(data, path) {
 	}
 	return path;
 }
-
-module.exports = {
-	changeDir: changeDir,
-};

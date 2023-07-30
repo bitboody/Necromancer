@@ -3,3 +3,4 @@ stderr
 stdout
 .env
 bin
+lib
