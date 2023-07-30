@@ -2,7 +2,7 @@ import net from "net";
 import util from "util";
 import child_process from "child_process";
 import process from "process";
-import changeDir from "./shell.js"
+import changeDir from "./shell.js";
 import dotenv from "dotenv";
 
 dotenv.config({ path: "../config/.env" });
@@ -24,8 +24,10 @@ function reconnect(timeout) {
 
 client.on("data", (data) => {
 	const dataStr = data.toString().toLowerCase();
-	if (dataStr.startsWith("exec") && dataStr.split(" ")[1] === "cd") {
-		path = changeDir(data, path);
+	if (dataStr.startsWith("exec")) {
+		if (dataStr.split(" ")[1] === "cd") {
+			path = changeDir(data, path);
+		}
 	}
 
 	async function execute(command) {

@@ -5,11 +5,12 @@ import dotenv from "dotenv";
 dotenv.config({ path: "../config/.env" });
 
 let clientCount = 0;
-let clients, clientInstances;
+let clients, clientInstances, silent;
 
 const clientModules = {
 	clients: (clients = []),
 	clientInstances: clientInstances,
+	silent: (silent = false),
 };
 
 const PORT = process.env.PORT;
@@ -38,19 +39,19 @@ net
 		socket.name = `${socket.remoteAddress}:${socket.remotePort}`;
 
 		// On client connect
-
 		clientModules.clients.push(socket);
 		clientCount++;
 
 		clientModules.clientInstances = [...clientModules.clients];
 		setTerminalTitle();
 
-		console.log(`Client ${socket.name} has connected.\n`);
+		console.log(`\nClient ${socket.name} has connected.\n`);
 
 		prompt();
 
 		socket.on("data", (data) => {
-			broadcast(`[CLIENT ${socket.name}] ` + data, socket);
+			if (!clientModules.silent)
+				broadcast(`[CLIENT ${socket.name}] ` + data, socket);
 			prompt();
 		});
 
@@ -62,14 +63,14 @@ net
 			clientModules.clients.splice(clientModules.clients.indexOf(socket), 1);
 			clientCount--;
 			clientModules.clientInstances = [...clientModules.clients];
-			console.log(`Client ${socket.name} has disconnected.\n`);
-			if (clientCount < 1) console.log("Waiting for clients to connect.\n");
+			console.log(`\nClient ${socket.name} has disconnected.\n`);
+			if (clientCount < 1) console.log("Waiting for clients to connect.");
 			setTerminalTitle();
 		}
 	})
 	.listen(PORT, HOST);
 
 console.log(`Server running on ${HOST}:${PORT}.`);
-console.log(`Waiting for connections.\n`);
+console.log(`Waiting for connections.`);
 
 export { clientModules, broadcast };

