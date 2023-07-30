@@ -20,6 +20,8 @@ Simple botnet made for educational purposes
 <h2 id="prerequisites">Prerequisites & tools</h2>
 • <a href="https://nodejs.org/en/download">Node</a> for the runtime environment.
 <br/>
+• <a href="https://github.com/babel/babel">Babel</a> for compiling to ES2015.
+<br/>
 • <a href="https://github.com/vercel/pkg">pkg</a> for compiling the client to an executable.
 <br/>
 • <a href="https://github.com/s-h-a-d-o-w/create-nodew-exe">create-nodew-exe</a> for making the executable silent.
@@ -37,10 +39,10 @@ npm install
 Use example.env as reference and make sure to add the dotenv file at:
 - config/.env
 
-To compile to Windows:
+To build the executable:
 
 ```sh
-pkg .
+npm run build
 ```
 
 To make the Windows executable run silently in the background: 
