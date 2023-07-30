@@ -1,11 +1,12 @@
 {
 	"name": "botnet",
 	"type": "module",
-	"bin": "./client/client.js",
+	"bin": "./lib/client.js",
 	"version": "1.0.0",
 	"description": "A TCP Botnet",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"convert": "babel client -d lib",
+		"build": "npm run convert && pkg package.json"
 	},
 	"repository": {
 		"type": "git",
@@ -23,12 +24,18 @@
 	},
 	"pkg": {
 		"assets": [
-			"./client/shell.js",
-			"./config/.env"
+			"./lib/shell.js",
+			"./config/*"
 		],
 		"targets": [
 			"windows"
 		],
 		"outputPath": "./bin"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.22.9",
+		"@babel/core": "^7.22.9",
+		"@babel/preset-env": "^7.22.9",
+		"babel-plugin-inline-dotenv": "^1.7.0"
 	}
 }
