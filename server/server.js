@@ -45,7 +45,7 @@ net
 		clientModules.clientInstances = [...clientModules.clients];
 		setTerminalTitle();
 
-		console.log(`\nClient ${socket.name} has connected.\n`);
+		console.log(`\x1b[91m\nClient ${socket.name} has connected.\n\x1b[0m`);
 
 		prompt();
 
@@ -63,23 +63,39 @@ net
 			clientModules.clients.splice(clientModules.clients.indexOf(socket), 1);
 			clientCount--;
 			clientModules.clientInstances = [...clientModules.clients];
-			console.log(`\nClient ${socket.name} has disconnected.\n`);
-			if (clientCount < 1) console.log("Waiting for clients to connect.");
+			console.log(`\x1b[91m\nClient ${socket.name} has disconnected.\n\x1b[0m`);
+			if (clientCount < 1) console.log("\x1b[91mWaiting for clients to connect.\x1b[0m");
 			setTerminalTitle();
 		}
 	})
 	.listen(PORT, HOST);
 
-
-console.log(`\x1b[36m
-__________                                         
-\\______   \\ ____   _________    ________ __  ______
- |     ___// __ \\ / ___\\__  \\  /  ___/  |  \\/  ___/
- |    |   \\  ___// /_/  > __ \\_\\___ \\|  |  /\\___ \\ 
- |____|    \\___  >___  (____  /____  >____//_____ >
-               \\/_____/     \\/     \\/           \\/
+console.log(`\x1b[31m
+ ██▓███  ▓█████   ▄████  ▄▄▄        ██████  █    ██   ██████ 
+▓██░  ██▒▓█   ▀  ██▒ ▀█▒▒████▄    ▒██    ▒  ██  ▓██▒▒██    ▒ 
+▓██░ ██▓▒▒███   ▒██░▄▄▄░▒██  ▀█▄  ░ ▓██▄   ▓██  ▒██░░ ▓██▄   
+▒██▄█▓▒ ▒▒▓█  ▄ ░▓█  ██▓░██▄▄▄▄██   ▒   ██▒▓▓█  ░██░  ▒   ██▒
+▒██▒ ░  ░░▒████▒░▒▓███▀▒ ▓█   ▓██▒▒██████▒▒▒▒█████▓ ▒██████▒▒
+▒▓▒░ ░  ░░░ ▒░ ░ ░▒   ▒  ▒▒   ▓▒█░▒ ▒▓▒ ▒ ░░▒▓▒ ▒ ▒ ▒ ▒▓▒ ▒ ░
+░▒ ░      ░ ░  ░  ░   ░   ▒   ▒▒ ░░ ░▒  ░ ░░░▒░ ░ ░ ░ ░▒  ░ ░
+░░          ░   ░ ░   ░   ░   ▒   ░  ░  ░   ░░░ ░ ░ ░  ░  ░  
+            ░  ░      ░       ░  ░      ░     ░           ░  
+                                                             
 \x1b[0m`);
-console.log(`Server running on ${HOST}:${PORT}.`);
-console.log(`Waiting for connections.`);
+
+// console.log(`\x1b[36m
+// __________
+// \\______   \\ ____   _________    ________ __  ______
+//  |     ___// __ \\ / ___\\__  \\  /  ___/  |  \\/  ___/
+//  |    |   \\  ___// /_/  > __ \\_\\___ \\|  |  /\\___ \\
+//  |____|    \\___  >___  (____  /____  >____//_____ >
+//                \\/_____/     \\/     \\/           \\/
+// \x1b[0m`);
+console.log(`\x1b[91m
+Server running on ${HOST}:${PORT}.
+\x1b[0m`);
+console.log(`\x1b[91m
+Waiting for connections.
+\x1b[0m`);
 
 export { clientModules, broadcast };
