@@ -1,6 +1,0 @@
-| Command   | Functionality                               | Usage              |
-| --------- | ------------------------------------------- | ------------------ |
-| exec      | Executes shell commands remotely            | exec (command)     |
-| instances | Limits number of machines running a command | instances (number) |
-| help      | Shows you how to use commands               | help (command)     |
-| silent    | Silents clients from responding             | silent (boolean)   |
