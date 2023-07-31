@@ -51,7 +51,7 @@ net
 
 		socket.on("data", (data) => {
 			if (!clientModules.silent)
-				broadcast(`[CLIENT ${socket.name}] ` + data, socket);
+				broadcast(`\x1b[33m[CLIENT ${socket.name}]\x1b[0m ` + data, socket);
 			prompt();
 		});
 
@@ -69,6 +69,7 @@ net
 		}
 	})
 	.listen(PORT, HOST);
+
 
 console.log(`\x1b[36m
 __________                                         
