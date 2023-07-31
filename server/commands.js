@@ -30,7 +30,7 @@ const commandsHelp = [
 ];
 
 export default function prompt() {
-	rl.question("\x1b[31m[PEGASUS]\x1b[0m ", (message) => {
+	rl.question("\x1b[31m[NECROMANCER]\x1b[0m ", (message) => {
 		message = message.toLowerCase();
 
 		if (message.startsWith("instances")) {
