@@ -20,7 +20,7 @@ function setTerminalTitle() {
 	process.stdout.write(
 		String.fromCharCode(27) +
 			"]0;" +
-			`Botnet | Bots: ${clientCount}` +
+			`Pegasus | Bots: ${clientCount}` +
 			String.fromCharCode(7)
 	);
 }

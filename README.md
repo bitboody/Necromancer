@@ -1,10 +1,10 @@
 <div align="center">
-<h1>Botnet</h1>
+<h1>Pegasus</h1>
 Simple botnet made for educational purposes
 <br>
 <br>
-<img src="https://img.shields.io/github/license/brplcc/botnet">
-<img src="https://img.shields.io/github/languages/code-size/brplcc/botnet">
+<img src="https://img.shields.io/github/license/brplcc/pegasus">
+<img src="https://img.shields.io/github/languages/code-size/brplcc/pegasus">
 <img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg">
   
 <br>
@@ -31,8 +31,8 @@ Simple botnet made for educational purposes
 <h2 id="Getting-started">Getting started</h2>
 
 ```sh 
-git clone https://github.com/brplcc/botnet.git
-cd botnet
+git clone https://github.com/brplcc/pegasus.git
+cd pegasus
 npm install
 ```
 
