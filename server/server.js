@@ -20,7 +20,7 @@ function setTerminalTitle() {
 	process.stdout.write(
 		String.fromCharCode(27) +
 			"]0;" +
-			`Botnet | Bots: ${clientCount}` +
+			`Pegasus | Bots: ${clientCount}` +
 			String.fromCharCode(7)
 	);
 }
@@ -70,6 +70,14 @@ net
 	})
 	.listen(PORT, HOST);
 
+console.log(`
+__________                                         
+\\______   \\ ____   _________    ________ __  ______
+ |     ___// __ \\ / ___\\__  \\  /  ___/  |  \\/  ___/
+ |    |   \\  ___// /_/  > __ \\_\\___ \\|  |  /\\___ \\ 
+ |____|    \\___  >___  (____  /____  >____//_____ >
+               \\/_____/     \\/     \\/           \\/
+`);
 console.log(`Server running on ${HOST}:${PORT}.`);
 console.log(`Waiting for connections.`);
 
