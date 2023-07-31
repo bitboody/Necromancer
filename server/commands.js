@@ -1,13 +1,10 @@
 import readline from "readline";
-import fs from "fs";
 import { clientModules, broadcast } from "./server.js";
 
 const rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
 });
-
-const help = fs.readFileSync("../config/help", "utf8");
 
 const commandsHelp = [
 	{
@@ -29,7 +26,7 @@ const commandsHelp = [
 		command: "silent",
 		functionality: "Silents clients from responding",
 		usage: "silent (boolean)",
-	}
+	},
 ];
 
 export default function prompt() {
@@ -53,7 +50,12 @@ export default function prompt() {
 			clientModules.clientInstances = [...clientModules.clients];
 
 		if (message.startsWith("help")) {
-			if (message === "help") console.log(`\n${help}`);
+			if (message === "help") {
+				console.log("Commands:")
+				for (let i = 0; i < commandsHelp.length; i++) {
+					console.log(commandsHelp[i].command);
+				}
+			}
 			if (
 				commandsHelp.filter((i) => i.command === message.split(" ")[1]).length >
 				0
@@ -63,7 +65,7 @@ export default function prompt() {
 					.indexOf(message.split(" ")[1]);
 
 				console.log(
-					`Functionality: ${commandsHelp[commandIndex].functionality}\nUsage: ${commandsHelp[commandIndex].usage}\n`
+					`Functionality: ${commandsHelp[commandIndex].functionality}\nUsage: ${commandsHelp[commandIndex].usage}`
 				);
 			}
 		}

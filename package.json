@@ -25,7 +25,7 @@
 	"pkg": {
 		"assets": [
 			"./lib/shell.js",
-			"./config/*"
+			"./config/.env"
 		],
 		"targets": [
 			"windows"
