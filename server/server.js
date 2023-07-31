@@ -82,20 +82,7 @@ console.log(`\x1b[31m
             ░  ░      ░       ░  ░      ░     ░           ░  
                                                              
 \x1b[0m`);
-
-// console.log(`\x1b[36m
-// __________
-// \\______   \\ ____   _________    ________ __  ______
-//  |     ___// __ \\ / ___\\__  \\  /  ___/  |  \\/  ___/
-//  |    |   \\  ___// /_/  > __ \\_\\___ \\|  |  /\\___ \\
-//  |____|    \\___  >___  (____  /____  >____//_____ >
-//                \\/_____/     \\/     \\/           \\/
-// \x1b[0m`);
-console.log(`\x1b[91m
-Server running on ${HOST}:${PORT}.
-\x1b[0m`);
-console.log(`\x1b[91m
-Waiting for connections.
-\x1b[0m`);
+console.log(`\x1b[91mServer running on ${HOST}:${PORT}.\x1b[0m`);
+console.log(`\x1b[91mWaiting for connections.\x1b[0m`);
 
 export { clientModules, broadcast };
