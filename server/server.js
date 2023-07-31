@@ -70,14 +70,14 @@ net
 	})
 	.listen(PORT, HOST);
 
-console.log(`
+console.log(`\x1b[36m
 __________                                         
 \\______   \\ ____   _________    ________ __  ______
  |     ___// __ \\ / ___\\__  \\  /  ___/  |  \\/  ___/
  |    |   \\  ___// /_/  > __ \\_\\___ \\|  |  /\\___ \\ 
  |____|    \\___  >___  (____  /____  >____//_____ >
                \\/_____/     \\/     \\/           \\/
-`);
+\x1b[0m`);
 console.log(`Server running on ${HOST}:${PORT}.`);
 console.log(`Waiting for connections.`);
 
