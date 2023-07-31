@@ -1,5 +1,5 @@
 {
-	"name": "botnet",
+	"name": "Pegasus",
 	"type": "module",
 	"bin": "./lib/client.js",
 	"version": "1.0.0",
