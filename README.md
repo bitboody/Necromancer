@@ -3,8 +3,8 @@
 Simple botnet made for educational purposes
 <br>
 <br>
-<img src="https://img.shields.io/github/license/brplcc/pegasus">
-<img src="https://img.shields.io/github/languages/code-size/brplcc/pegasus">
+<img src="https://img.shields.io/github/license/brplcc/Pegasus">
+<img src="https://img.shields.io/github/languages/code-size/brplcc/Pegasus">
 <img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg">
   
 <br>
@@ -31,8 +31,8 @@ Simple botnet made for educational purposes
 <h2 id="Getting-started">Getting started</h2>
 
 ```sh 
-git clone https://github.com/brplcc/pegasus.git
-cd pegasus
+git clone https://github.com/brplcc/Pegasus.git
+cd Pegasus
 npm install
 ```
 

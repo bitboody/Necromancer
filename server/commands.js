@@ -33,7 +33,7 @@ const commandsHelp = [
 ];
 
 export default function prompt() {
-	rl.question("[BOTNET] ", (message) => {
+	rl.question("[PEGASUS] ", (message) => {
 		message = message.toLowerCase();
 
 		if (message.startsWith("instances")) {
