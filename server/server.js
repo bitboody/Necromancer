@@ -14,7 +14,7 @@ const clientModules = {
 };
 
 const PORT = process.env.PORT;
-const HOST = process.env.HOST;
+const IP = process.env.IP;
 
 function setTerminalTitle() {
 	process.stdout.write(
@@ -68,7 +68,7 @@ net
 			setTerminalTitle();
 		}
 	})
-	.listen(PORT, HOST);
+	.listen(PORT, IP);
 
 console.log(`\x1b[31m
  ███▄    █  ▄████▄   ██▀███   ███▄ ▄███▓ ███▄    █  ▄████▄   ██▀███  
@@ -82,7 +82,7 @@ console.log(`\x1b[31m
          ░ ░ ░         ░            ░            ░ ░ ░         ░     
            ░                                       ░                
 \x1b[0m`);
-console.log(`\x1b[91mServer running on ${HOST}:${PORT}.\x1b[0m`);
+console.log(`\x1b[91mServer running on ${IP}:${PORT}.\x1b[0m`);
 console.log(`\x1b[91mWaiting for connections.\x1b[0m`);
 
 export { clientModules, broadcast };
