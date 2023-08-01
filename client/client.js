@@ -11,14 +11,14 @@ const exec = util.promisify(child_process.exec);
 let path = process.cwd();
 
 const PORT = process.env.PORT;
-const HOST = process.env.HOST;
+const IP = process.env.HOST;
 
 const client = new net.Socket();
 
 function reconnect(timeout) {
 	setTimeout(() => {
 		client.destroy();
-		client.connect(PORT, HOST);
+		client.connect(PORT, IP);
 	}, timeout);
 }
 
@@ -44,7 +44,9 @@ client.on("data", (data) => {
 });
 
 client.on("close", () => {
-	reconnect(30000);
+	client.setTimeout(10000, () => {
+		client.connect(PORT, IP);
+	});
 });
 
 client.on("error", (err) => {
@@ -53,4 +55,4 @@ client.on("error", (err) => {
 	}
 });
 
-client.connect(PORT, HOST);
+client.connect(PORT, IP);
