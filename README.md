@@ -18,7 +18,7 @@ Simple botnet made for educational purposes
 </div>
 
 <h2 id="prerequisites">Prerequisites & tools</h2>
-• <a href="https://nodejs.org/en/download">Node</a> for the runtime environment.
+• <a href="https://nodejs.org/en/download">Node.js</a> for the runtime environment.
 <br/>
 • <a href="https://github.com/babel/babel">Babel</a> for compiling to ES2015.
 <br/>

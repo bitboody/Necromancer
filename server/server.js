@@ -45,13 +45,13 @@ net
 		clientModules.clientInstances = [...clientModules.clients];
 		setTerminalTitle();
 
-		console.log(`\x1b[91m\nClient ${socket.name} has connected.\n\x1b[0m`);
+		console.log(`\x1b[91m\nBot ${socket.name} has connected.\n\x1b[0m`);
 
 		prompt();
 
 		socket.on("data", (data) => {
 			if (!clientModules.silent)
-				broadcast(`\x1b[33m[CLIENT ${socket.name}]\x1b[0m ` + data, socket);
+				broadcast(`\x1b[33m[BOT ${socket.name}]\x1b[0m ` + data, socket);
 			prompt();
 		});
 
@@ -63,7 +63,7 @@ net
 			clientModules.clients.splice(clientModules.clients.indexOf(socket), 1);
 			clientCount--;
 			clientModules.clientInstances = [...clientModules.clients];
-			console.log(`\x1b[91m\nClient ${socket.name} has disconnected.\n\x1b[0m`);
+			console.log(`\x1b[91m\nBot ${socket.name} has disconnected.\n\x1b[0m`);
 			if (clientCount < 1) console.log("\x1b[91mWaiting for clients to connect.\x1b[0m");
 			setTerminalTitle();
 		}
