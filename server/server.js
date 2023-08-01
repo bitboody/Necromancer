@@ -20,7 +20,7 @@ function setTerminalTitle() {
 	process.stdout.write(
 		String.fromCharCode(27) +
 			"]0;" +
-			`Necromancer | Bots: ${clientCount}` +
+			`Necromancer | Zombies: ${clientCount}` +
 			String.fromCharCode(7)
 	);
 }
