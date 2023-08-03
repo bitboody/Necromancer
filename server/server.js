@@ -47,8 +47,6 @@ net
 
 		console.log(`\x1b[91m\nBot ${socket.name} has connected.\n\x1b[0m`);
 
-		prompt();
-
 		socket.on("data", (data) => {
 			if (!clientModules.silent)
 				broadcast(`\x1b[33m[BOT ${socket.name}]\x1b[0m ` + data, socket);
