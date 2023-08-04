@@ -79,5 +79,5 @@ Special thanks to [Looseman](https://github.com/glitch-911) and [Scrippy](https:
 - [X] Get it to work online instead of localhost.
 - [X] Add an instances option that limits how many machines will run a command.
 - [X] Add a help command.
-- [ ] Add a (scripts) run command.
+- [X] Add a (scripts) run command.
 - [ ] Add DDOS attack feature (any kind).
