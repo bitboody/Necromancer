@@ -1,5 +1,5 @@
 import net from "net";
-import prompt from "./commands.js";
+import { prompt } from "./commands.js";
 import dotenv from "dotenv";
 
 dotenv.config({ path: "../config/.env" });
@@ -62,7 +62,8 @@ net
 			clientCount--;
 			clientModules.clientInstances = [...clientModules.clients];
 			console.log(`\x1b[91m\nBot ${socket.name} has disconnected.\n\x1b[0m`);
-			if (clientCount < 1) console.log("\x1b[91mWaiting for clients to connect.\x1b[0m");
+			if (clientCount < 1)
+				console.log("\x1b[91mWaiting for clients to connect.\x1b[0m");
 			setTerminalTitle();
 		}
 	})

