@@ -11,13 +11,14 @@ Simple botnet made for educational purposes
 
 </div>
 <div align="center">
-<a href="#prerequisites">Prerequisites & tools</a> •
+<a href="#prerequisites">Prerequisites</a> •
 <a href="#getting-started">Getting started</a> •
 <a href="#commands">Commands</a> •
-<a href="#about">About</a>
+<a href="#about">About</a> •
+<a href="#roadmap">Roadmap</a>
 </div>
 
-<h2 id="prerequisites">Prerequisites & tools</h2>
+<h2 id="prerequisites">Prerequisites:</h2>
 • <a href="https://nodejs.org/en/download">Node.js</a> for the runtime environment.
 <br/>
 • <a href="https://github.com/babel/babel">Babel</a> for compiling to ES2015.
@@ -28,7 +29,7 @@ Simple botnet made for educational purposes
 
 ---------------
 
-<h2 id="Getting-started">Getting started</h2>
+<h2 id="Getting-started">Getting started:</h2>
 
 ```sh 
 git clone https://github.com/brplcc/Necromancer.git
@@ -52,7 +53,7 @@ create-nodew-exe <src> <dst>
 ```
 ---------------
 
-<h2 id="commands">Commands</h2>
+<h2 id="commands">Commands:</h2>
 
 Here is a list of some commands:
 
@@ -65,7 +66,7 @@ Here is a list of some commands:
 
 ---------------
 
-<h2 id="about">About</h2>
+<h2 id="about">About:</h2>
 
 I started this project in hopes to improve my TCP networking skills and because I was interested in the subject. DISCLAIMER: I am not liable for any perceived damages or harm that may result from the improper use of this software; it was only created for educational purposes.
 
@@ -73,9 +74,10 @@ Special thanks to [Looseman](https://github.com/glitch-911) and [Scrippy](https:
 
 ---------------
 
-<h2 id="TODO">TODO</h2>
+<h2 id="roadmap">Roadmap:</h2>
 
 - [X] Get it to work online instead of localhost.
 - [X] Add an instances option that limits how many machines will run a command.
 - [X] Add a help command.
+- [ ] Add a (scripts) run command.
 - [ ] Add DDOS attack feature (any kind).
