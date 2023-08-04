@@ -1,6 +1,5 @@
 node_modules
-stderr
-stdout
 .env
-bin
-lib
+bin/*
+lib/*
+config/scripts/*
