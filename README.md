@@ -1,3 +1,4 @@
+
 <div align="center">
 <h1>Necromancer</h1>
 Simple botnet made for educational purposes
@@ -61,7 +62,9 @@ Here is a list of some commands:
 | --------- | ------------------------------------------- | ------------------ |
 | exec      | Executes shell commands remotely            | exec (command)     |
 | instances | Limits number of machines running a command | instances (number) |
+| run       | Runs custom scripts you have                | run (script name)  |
 | help      | Shows you how to use commands               | help (command)     |
+| scripts   | Lists custom scripts you have               | scripts            |
 | silent    | Silents clients from responding             | silent (boolean)   |
 
 ---------------
