@@ -15,6 +15,7 @@ Simple botnet made for educational purposes
 <a href="#prerequisites">Prerequisites</a> •
 <a href="#getting-started">Getting started</a> •
 <a href="#commands">Commands</a> •
+<a href="#configuration">Configuration</a> •
 <a href="#about">About</a> •
 <a href="#roadmap">Roadmap</a>
 </div>
@@ -38,9 +39,6 @@ cd Necromancer
 npm install
 ```
 
-Use example.env as reference and make sure to add the dotenv file at:
-- config/.env
-
 To build the executable:
 
 ```sh
@@ -52,6 +50,17 @@ To make the Windows executable run silently in the background:
 ```sh
 create-nodew-exe <src> <dst>
 ```
+---------------
+
+<h2 id="configuration">Configuration:</h2>
+
+Use example.env as reference and make sure to add the dotenv file at:
+- config/.env
+
+You can have your own shell scripts to run at this directory:
+- config/scripts/
+
+
 ---------------
 
 <h2 id="commands">Commands:</h2>
