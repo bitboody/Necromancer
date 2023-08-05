@@ -30,7 +30,7 @@ function broadcast(message) {
 	clientModules.clientInstances.forEach((client) => {
 		client.write(message);
 	});
-	process.stdout.write("\n" + message);
+	process.stdout.write(message);
 }
 
 net
@@ -49,7 +49,7 @@ net
 
 		socket.on("data", (data) => {
 			if (!clientModules.silent)
-				broadcast(`\x1b[33m[BOT ${socket.name}]\x1b[0m ` + data, socket);
+				broadcast(`\n\x1b[33m[BOT ${socket.name}]\x1b[0m ` + data, socket);
 			prompt();
 		});
 
