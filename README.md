@@ -14,9 +14,9 @@ Simple botnet made for educational purposes
 <div align="center">
 <a href="#prerequisites">Prerequisites</a> •
 <a href="#getting-started">Getting started</a> •
-<a href="#commands">Commands</a> 
+<a href="#configuration">Configuration</a>
 <br>
-<a href="#configuration">Configuration</a> •
+<a href="#commands">Commands</a> • 
 <a href="#about">About</a> •
 <a href="#roadmap">Roadmap</a>
 </div>
