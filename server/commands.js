@@ -122,7 +122,7 @@ function runScript(scriptName) {
 			if (file === scriptName) {
 				fs.readFile(`${scriptsDir}/${scriptName}`, "utf8", (err, data) => {
 					console.log("\x1b[91mRunning script...\x1b[0m");
-					broadcast(`exec ${data}`);
+					broadcast(`exec powershell ${data}`);
 				});
 			}
 		});
