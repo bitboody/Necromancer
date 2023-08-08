@@ -24,7 +24,7 @@
 	},
 	"pkg": {
 		"assets": [
-			"./lib/shell.js",
+			"./lib/*",
 			"./config/.env"
 		],
 		"targets": [

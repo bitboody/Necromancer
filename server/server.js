@@ -41,11 +41,11 @@ net
 		// On client connect
 		clientModules.clients.push(socket);
 		clientCount++;
-
 		clientModules.clientInstances = [...clientModules.clients];
+
 		setTerminalTitle();
 
-		console.log(`\x1b[91m\nBot ${socket.name} has connected.\n\x1b[0m`);
+		console.log(`\x1b[91m\nBot ${socket.name} has connected.\x1b[0m`);
 
 		socket.on("data", (data) => {
 			if (!clientModules.silent)
@@ -61,7 +61,7 @@ net
 			clientModules.clients.splice(clientModules.clients.indexOf(socket), 1);
 			clientCount--;
 			clientModules.clientInstances = [...clientModules.clients];
-			console.log(`\x1b[91m\nBot ${socket.name} has disconnected.\n\x1b[0m`);
+			console.log(`\x1b[91m\nBot ${socket.name} has disconnected.\x1b[0m`);
 			if (clientCount < 1)
 				console.log("\x1b[91mWaiting for clients to connect.\x1b[0m");
 			setTerminalTitle();
@@ -82,6 +82,7 @@ console.log(`\x1b[31m
            ░                                       ░                
 \x1b[0m`);
 console.log(`\x1b[91mServer running on ${IP}:${PORT}.\x1b[0m`);
-console.log(`\x1b[91mWaiting for connections.\x1b[0m`);
+console.log("\x1b[91mWaiting for connections.\x1b[0m");
 
 export { clientModules, broadcast };
+
