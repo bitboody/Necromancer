@@ -68,14 +68,15 @@ You can have your own shell scripts to run at this directory:
 
 Here is a list of some commands:
 
-| Command   | Functionality                               | Usage              |
-| --------- | ------------------------------------------- | ------------------ |
-| exec      | Executes shell commands remotely            | exec (command)     |
-| instances | Limits number of machines running a command | instances (number) |
-| run       | Runs custom scripts you have                | run (script name)  |
-| help      | Shows you how to use commands               | help (command)     |
-| scripts   | Lists custom scripts you have               | scripts            |
-| silent    | Silents clients from responding             | silent (boolean)   |
+| Command   | Functionality                               | Usage                                      |
+| --------- | ------------------------------------------- | ------------------------------------------ |
+| exec      | Executes shell commands remotely            | exec (command)                             |
+| instances | Limits number of machines running a command | instances (number)                         |
+| run       | Runs custom scripts you have                | run (script name)                          |
+| help      | Shows you how to use commands               | help (command)                             |
+| scripts   | Lists custom scripts you have               | scripts                                    |
+| silent    | Silents clients from responding             | silent (boolean)                           |
+| slowloris | Slowloris DDOS attac                        | slowloris (ip) (port) (duration) (sockets) |
 
 ---------------
 
@@ -93,4 +94,4 @@ Special thanks to [Looseman](https://github.com/glitch-911) and [Scrippy](https:
 - [X] Add an instances option that limits how many machines will run a command.
 - [X] Add a help command.
 - [X] Add a (scripts) run command.
-- [ ] Add DDOS attack feature (any kind).
+- [X] Add DDOS attack feature (any kind).
