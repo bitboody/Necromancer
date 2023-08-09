@@ -76,7 +76,7 @@ Here is a list of some commands:
 | help      | Shows you how to use commands               | help (command)                             |
 | scripts   | Lists custom scripts you have               | scripts                                    |
 | silent    | Silents clients from responding             | silent (boolean)                           |
-| slowloris | Slowloris DDOS attac                        | slowloris (ip) (port) (duration) (sockets) |
+| slowloris | Slowloris DDOS attack                       | slowloris (ip) (port) (duration) (sockets) |
 
 ---------------
 
