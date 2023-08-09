@@ -2,10 +2,14 @@ import net from "net";
 import { client } from "../client.js";
 
 export default function slowLoris(ip, port, attackDuration, sockets) {
-  if (ip === (undefined || "")) ip = "127.0.0.1";
-  if (port === (undefined || "")) port = 80;
-  if (attackDuration === (undefined || "")) attackDuration = 60000;
-  if (sockets === (undefined || "")) sockets = 1000;
+	switch(arguments.length) {
+		case 1: ip = '127.0.0.1';
+		case 2: port = '80';
+		case 3: attackDuration = 60000;
+		case 4: attackDuration = 200;
+		case 5: break;
+		default: throw new Error('illegal argument count')
+	}
 
   if (attackDuration) {
     setTimeout(() => {
