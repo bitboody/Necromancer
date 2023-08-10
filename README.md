@@ -73,10 +73,9 @@ Here is a list of some commands:
 | exec      | Executes shell commands remotely            | exec (command)                             |
 | instances | Limits number of machines running a command | instances (number)                         |
 | run       | Runs custom scripts you have                | run (script name)                          |
-| help      | Shows you how to use commands               | help (command)                             |
-| scripts   | Lists custom scripts you have               | scripts                                    |
-| silent    | Silents clients from responding             | silent (boolean)                           |
 | slowloris | Slowloris DDOS attack                       | slowloris (ip) (port) (duration) (sockets) |
+
+For the rest of the commands, just run "help".
 
 ---------------
 

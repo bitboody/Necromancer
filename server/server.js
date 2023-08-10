@@ -69,6 +69,7 @@ net
 	})
 	.listen(PORT, IP);
 
+console.clear();
 console.log(`\x1b[31m
  ███▄    █  ▄████▄   ██▀███   ███▄ ▄███▓ ███▄    █  ▄████▄   ██▀███  
  ██ ▀█   █ ▒██▀ ▀█  ▓██ ▒ ██▒▓██▒▀█▀ ██▒ ██ ▀█   █ ▒██▀ ▀█  ▓██ ▒ ██▒
@@ -85,4 +86,3 @@ console.log(`\x1b[91mServer running on ${IP}:${PORT}.\x1b[0m`);
 console.log("\x1b[91mWaiting for connections.\x1b[0m");
 
 export { clientModules, broadcast };
-

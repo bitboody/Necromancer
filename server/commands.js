@@ -13,7 +13,6 @@ export function prompt() {
     message = message.toLowerCase();
 
     // Commands
-
     if (message.startsWith("instances")) {
       if (message === "instances") {
         console.log(`Instances: ${clientModules.clientInstances.length}`);
@@ -58,8 +57,9 @@ export function prompt() {
       }
     }
 
-    // Commands, scripts and attacks
+		if (message === "clear") console.clear();
 
+    // Scripts and attacks
     if (message === "scripts") {
       listScripts();
     }
