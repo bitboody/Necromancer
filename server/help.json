@@ -1,5 +1,10 @@
 [
     {
+        "command":"clear",
+        "functionality":"Clears terminal",
+        "usage":"clear"
+    },
+    {
         "command":"exec",
         "functionality":"Executes shell commands remotely",
         "usage":"exec (command)"
