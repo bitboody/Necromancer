@@ -1,4 +1,3 @@
-
 <div align="center">
 <h1>Necromancer</h1>
 Simple botnet made for educational purposes
@@ -18,6 +17,7 @@ Simple botnet made for educational purposes
 <br>
 <a href="#commands">Commands</a> • 
 <a href="#about">About</a> •
+<a href="#credit">Credit</a> •
 <a href="#roadmap">Roadmap</a>
 </div>
 
@@ -83,7 +83,14 @@ For the rest of the commands, just run "help".
 
 I started this project in hopes to improve my TCP networking skills and because I was interested in the subject. DISCLAIMER: I am not liable for any perceived damages or harm that may result from the improper use of this software; it was only created for educational purposes.
 
+<h2 id="credit">Credit:</h2>
+
 Special thanks to [Looseman](https://github.com/glitch-911) and [Scrippy](https://github.com/Scrippy) for testing. and [ProtogenDelta](https://github.com/ProtogenDelta) for helping me properly understand how basic networking works and with code quality.
+
+The project also had help using:
+
+- A modified version of yosif111's [Slowloris implementation.](https://github.com/yosif111/Slowloris).
+- creationix's [TCP based chat server](https://gist.github.com/creationix/707146) as a starting template for the server.
 
 ---------------
 
