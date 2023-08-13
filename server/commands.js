@@ -15,13 +15,16 @@ export function prompt() {
 		// Commands
 		if (message.startsWith("instances")) {
 			if (message === "instances") {
-				console.log(`Instances: ${clientModules.clientInstances.length}`);
+				console.log(
+					`Instances: ${clientModules.clientInstances.length}`
+				);
 			} else if (message.split(" ")[1] <= clientModules.clients.length) {
 				clientModules.clientInstances = [...clientModules.clients];
-				clientModules.clientInstances = clientModules.clientInstances.slice(
-					0,
-					message.split(" ")[1]
-				);
+				clientModules.clientInstances =
+					clientModules.clientInstances.slice(
+						0,
+						message.split(" ")[1]
+					);
 			}
 		}
 
@@ -35,7 +38,8 @@ export function prompt() {
 					console.log(help[i].command);
 				}
 			} else if (
-				help.filter((i) => i.command === message.split(" ")[1]).length > 0
+				help.filter((i) => i.command === message.split(" ")[1]).length >
+				0
 			) {
 				let commandIndex = help
 					.map((i) => i.command)
@@ -48,7 +52,8 @@ export function prompt() {
 		}
 
 		if (message.startsWith("silent")) {
-			if (message === "silent") console.log(`silent: ${clientModules.silent}`);
+			if (message === "silent")
+				console.log(`silent: ${clientModules.silent}`);
 			else if (message.split(" ")[1] === "true") {
 				clientModules.silent = true;
 			} else {
@@ -110,10 +115,14 @@ function runScript(scriptName) {
 	fs.readdir(scriptsDir, (err, files) => {
 		files.forEach((file) => {
 			if (file === scriptName) {
-				fs.readFile(`${scriptsDir}/${scriptName}`, "utf8", (err, data) => {
-					console.log("\x1b[91mRunning script...\x1b[0m");
-					broadcast(`exec ${data}`);
-				});
+				fs.readFile(
+					`${scriptsDir}/${scriptName}`,
+					"utf8",
+					(err, data) => {
+						console.log("\x1b[91mRunning script...\x1b[0m");
+						broadcast(`exec ${data}`);
+					}
+				);
 			}
 		});
 		prompt();
