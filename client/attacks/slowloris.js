@@ -12,10 +12,9 @@ export default function slowLoris(ip, port, attackDuration, sockets) {
 		sockets = 200;
 	}
 
-	setTimeout(() => {
-		client.write("Attack completed!");
-		return;
-	}, attackDuration);
+	// setTimeout(() => {
+	// 	client.write("Attack completed!");
+	// }, attackDuration);
 
 	let activeSockets = 0;
 	let socketsTargetReached = false;
@@ -58,7 +57,6 @@ export default function slowLoris(ip, port, attackDuration, sockets) {
 	setTimeout(() => {
 		if (activeSockets === 0) {
 			client.write(`\nCould not connect to ${ip}:${port}`);
-			return;
 		}
 	}, 10000);
 }
