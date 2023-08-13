@@ -33,41 +33,39 @@ function broadcast(message) {
 	process.stdout.write(message);
 }
 
-net
-	.createServer((socket) => {
-		// Identify client
-		socket.name = `${socket.remoteAddress}:${socket.remotePort}`;
+net.createServer((socket) => {
+	// Identify client
+	socket.name = `${socket.remoteAddress}:${socket.remotePort}`;
 
-		// On client connect
-		clientModules.clients.push(socket);
-		clientCount++;
+	// On client connect
+	clientModules.clients.push(socket);
+	clientCount++;
+	clientModules.clientInstances = [...clientModules.clients];
+
+	setTerminalTitle();
+
+	console.log(`\x1b[91m\nBot ${socket.name} has connected.\x1b[0m`);
+
+	socket.on("data", (data) => {
+		if (!clientModules.silent)
+			broadcast(`\n\x1b[33m[BOT ${socket.name}]\x1b[0m ` + data, socket);
+		prompt();
+	});
+
+	socket.on("error" || "end", () => {
+		clientDisconnected();
+	});
+
+	function clientDisconnected() {
+		clientModules.clients.splice(clientModules.clients.indexOf(socket), 1);
+		clientCount--;
 		clientModules.clientInstances = [...clientModules.clients];
-
+		console.log(`\x1b[91m\nBot ${socket.name} has disconnected.\x1b[0m`);
+		if (clientCount < 1)
+			console.log("\x1b[91mWaiting for clients to connect.\x1b[0m");
 		setTerminalTitle();
-
-		console.log(`\x1b[91m\nBot ${socket.name} has connected.\x1b[0m`);
-
-		socket.on("data", (data) => {
-			if (!clientModules.silent)
-				broadcast(`\n\x1b[33m[BOT ${socket.name}]\x1b[0m ` + data, socket);
-			prompt();
-		});
-
-		socket.on("error" || "end", () => {
-			clientDisconnected();
-		});
-
-		function clientDisconnected() {
-			clientModules.clients.splice(clientModules.clients.indexOf(socket), 1);
-			clientCount--;
-			clientModules.clientInstances = [...clientModules.clients];
-			console.log(`\x1b[91m\nBot ${socket.name} has disconnected.\x1b[0m`);
-			if (clientCount < 1)
-				console.log("\x1b[91mWaiting for clients to connect.\x1b[0m");
-			setTerminalTitle();
-		}
-	})
-	.listen(PORT, IP);
+	}
+}).listen(PORT, IP);
 
 console.clear();
 console.log(`\x1b[31m
