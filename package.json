@@ -25,7 +25,8 @@
 	"pkg": {
 		"assets": [
 			"./lib/*",
-			"./config/.env"
+			"./config/.env",
+			"./config/UAs.json"
 		],
 		"targets": [
 			"windows"
