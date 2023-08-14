@@ -61,6 +61,7 @@ Use example.env as reference and make sure to add the dotenv file at:
 You can have your own shell scripts to run at this directory:
 - config/scripts/
 
+Just use the 'convert.ps1' file to convert your Powershell script to a one line file that could be executed remotely.
 
 ---------------
 
@@ -82,6 +83,8 @@ For the rest of the commands, just run "help".
 <h2 id="about">About:</h2>
 
 I started this project in hopes to improve my TCP networking skills and because I was interested in the subject. DISCLAIMER: I am not liable for any perceived damages or harm that may result from the improper use of this software; it was only created for educational purposes.
+
+This repository contains both the C&C server and the client/malware.
 
 <h2 id="credit">Credit:</h2>
 
