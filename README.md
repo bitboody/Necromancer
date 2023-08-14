@@ -61,6 +61,7 @@ Use example.env as reference and make sure to add the dotenv file at:
 You can have your own shell scripts to run at this directory:
 - config/scripts/
 
+Just use the 'convert.ps1' file to convert your Powershell script to a one line file that could be executed remotely.
 
 ---------------
 
