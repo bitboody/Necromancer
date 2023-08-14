@@ -83,6 +83,8 @@ For the rest of the commands, just run "help".
 
 I started this project in hopes to improve my TCP networking skills and because I was interested in the subject. DISCLAIMER: I am not liable for any perceived damages or harm that may result from the improper use of this software; it was only created for educational purposes.
 
+This repository contains both the C&C server and the client/malware.
+
 <h2 id="credit">Credit:</h2>
 
 Special thanks to [Looseman](https://github.com/glitch-911) and [Scrippy](https://github.com/Scrippy) for testing. and [ProtogenDelta](https://github.com/ProtogenDelta) for helping me properly understand how basic networking works and with code quality.
