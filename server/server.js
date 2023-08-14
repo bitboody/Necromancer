@@ -16,12 +16,7 @@ const PORT = process.env.PORT;
 const IP = process.env.IP;
 
 function setTerminalTitle() {
-	process.stdout.write(
-		String.fromCharCode(27) +
-			"]0;" +
-			`Necromancer | Zombies: ${clients.length}` +
-			String.fromCharCode(7)
-	);
+	process.title = `Necromancer | Zombies: ${clients.length}`;
 }
 setTerminalTitle();
 
