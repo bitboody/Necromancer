@@ -1,10 +1,6 @@
 import http from "http";
 import fs from "fs";
 
-const agent = new http.Agent({
-    keepAlive: false
-})
-
 export default function recieve(fileName, port) {
 	const server = http.createServer().listen(port);
 
