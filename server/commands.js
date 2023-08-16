@@ -101,18 +101,6 @@ export function prompt() {
 			}, duration);
 		}
 
-		if (message.startsWith("yank")) {
-			if (message === "yank")
-				console.log(
-					"Please provide arguments: yank (file name) (port)"
-				);
-
-			if (commandArgs.firstArg !== undefined) {
-				recieve(commandArgs.firstArg, commandArgs.secondArg);
-				broadcast(message);
-			}
-		}
-
 		if (message.startsWith("exec")) broadcast(message);
 
 		return prompt();

@@ -72,10 +72,6 @@ client.on("data", (data) => {
 			commandArgs.fourthArg
 		);
 	}
-
-	if (dataStr.startsWith("yank")) {
-		send(IP, commandArgs.secondArg, path, commandArgs.firstArg);
-	}
 });
 
 client.on("connect", () => {
