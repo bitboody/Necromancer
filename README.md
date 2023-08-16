@@ -105,3 +105,4 @@ The project also had help using:
 - [X] Add a help command.
 - [X] Add a (scripts) run command.
 - [X] Add DDOS attack feature (any kind).
+- [X] Download files from a victim's computer.
