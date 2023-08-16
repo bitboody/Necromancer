@@ -39,4 +39,3 @@ export default function send(host, port, dir, fileName) {
 
 	readStream.pipe(req);
 }
-
