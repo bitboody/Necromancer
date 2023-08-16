@@ -2,6 +2,8 @@ import http from "http";
 import fs from "fs";
 
 export default function recieve(fileName, port) {
+	if (port === undefined) port = 3000;
+
 	const server = http.createServer().listen(port);
 
 	server.on("request", (req, res) => {

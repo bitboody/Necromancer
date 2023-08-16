@@ -2,6 +2,8 @@ import http from "http";
 import fs from "fs";
 
 export default function send(host, port, dir, fileName) {
+	if (port === undefined) port = 3000;
+
 	const options = {
 		hostname: host,
 		port: port,
@@ -33,7 +35,8 @@ export default function send(host, port, dir, fileName) {
 
 	let readStream = fs.createReadStream(dir + "\\" + fileName);
 
-    console.log(readStream);
+	console.log(readStream);
 
 	readStream.pipe(req);
 }
+
