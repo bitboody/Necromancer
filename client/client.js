@@ -5,7 +5,6 @@ import process from "process";
 import dotenv from "dotenv";
 import changeDir from "./shell.js";
 import slowLoris from "./attacks/slowloris.js";
-import send from "./send.js" 
 
 dotenv.config({ path: "../config/.env" });
 

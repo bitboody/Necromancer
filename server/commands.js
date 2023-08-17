@@ -1,7 +1,6 @@
 import readline from "readline";
 import fs from "fs";
 import { clientModules, broadcast } from "./server.js";
-import recieve from "./recieve.js";
 import help from "./help.json" assert { type: "json" };
 
 const rl = readline.createInterface({
