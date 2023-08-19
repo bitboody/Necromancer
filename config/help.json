@@ -1,0 +1,47 @@
+[
+    {
+        "command":"clear",
+        "functionality":"Clears terminal",
+        "usage":"clear"
+    },
+    {
+        "command":"exec",
+        "functionality":"Executes shell commands remotely",
+        "usage":"exec (command)"
+    },
+    {
+        "command":"instances",
+        "functionality":"Limits number of machines running a command",
+        "usage":"instances (number)"
+    },
+    {
+        "command":"run",
+        "functionality":"Runs custom scripts you have",
+        "usage":"run (script name)"
+    },
+    {
+        "command":"help",
+        "functionality":"Shows you how to use commands",
+        "usage":"help (command)"
+    },
+    {
+        "command":"scripts",
+        "functionality":"Lists custom scripts you have",
+        "usage":"scripts"
+    },
+	{
+        "command":"select",
+        "functionality":"Select a specific bot",
+        "usage":"select (index)"
+	},
+    {
+        "command":"silent",
+        "functionality":"Silents clients from responding",
+        "usage":"silent (boolean)"
+    },
+    {
+        "command":"slowloris",
+        "functionality":"Slowloris DDOS attack",
+        "usage":"slowloris (ip) (port) (duration) (sockets)"
+    }
+]
