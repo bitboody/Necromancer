@@ -82,7 +82,7 @@ For the rest of the commands, just run "help".
 
 <h2 id="about">About:</h2>
 
-I started this project in hopes to improve my TCP networking skills and because I was interested in the subject. DISCLAIMER: I am not liable for any perceived damages or harm that may result from the improper use of this software; it was only created for educational purposes.
+I started this project in hopes of improving my TCP networking skills and because I was interested in the subject. DISCLAIMER: I am not liable for any perceived damages or harm that may result from the improper use of this software; it was only created for educational purposes. This is merely a proof of concept.
 
 This repository contains both the C&C server and the client/malware.
 
