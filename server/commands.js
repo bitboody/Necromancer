@@ -58,6 +58,12 @@ export function prompt() {
 			}
 		}
 
+		if (message.startsWith("select")) {
+			clientModules.clientInstances = Array(
+				clientModules.clientInstances[commandArgs.firstArg]
+			).filter((i) => i !== undefined);
+		}
+
 		if (message.startsWith("silent")) {
 			if (message === "silent")
 				console.log(`silent: ${clientModules.silent}`);
