@@ -61,7 +61,7 @@ Use example.env as reference and make sure to add the dotenv file at:
 You can have your own shell scripts to run at this directory:
 - config/scripts/
 
-Just use the 'convert.ps1' file to convert your Powershell script to a one line file.
+Just use the 'convert.ps1' file to convert your Powershell script to a one line file (kinda buggy).
 
 ---------------
 
@@ -100,10 +100,9 @@ The project also had help using:
 
 <h2 id="roadmap">Roadmap:</h2>
 
-- [X] Get it to work online instead of localhost.
 - [X] Add an instances option that limits how many machines will run a command.
 - [X] Add a help command.
-- [X] Add a (scripts) run command.
+- [X] Add a script run command.
 - [X] Add DDOS attack feature (any kind).
 - [ ] Download files from a victim's computer.
 - [ ] Upload files to a victim's computer.

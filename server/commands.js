@@ -118,7 +118,7 @@ function listScripts() {
 	fs.readdir(scriptsDir, (err, files) => {
 		console.log("\nList of scripts in script dir:");
 		files.forEach((file) => {
-			if (file !== "convert.ps1") console.log(`\x1b[34m${file}\x1b[0m`);
+			if (file.includes(".cmd")) console.log(`\x1b[34m${file}\x1b[0m`);
 		});
 		prompt();
 	});
