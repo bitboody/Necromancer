@@ -61,7 +61,7 @@ Use example.env as reference and make sure to add the dotenv file at:
 You can have your own shell scripts to run at this directory:
 - config/scripts/
 
-Just use the 'convert.ps1' file to convert your Powershell script to a one line file that could be executed remotely.
+Just use the 'convert.ps1' file to convert your Powershell script to a one line file.
 
 ---------------
 
@@ -106,3 +106,4 @@ The project also had help using:
 - [X] Add a (scripts) run command.
 - [X] Add DDOS attack feature (any kind).
 - [ ] Download files from a victim's computer.
+- [ ] Upload files to a victim's computer.
