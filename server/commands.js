@@ -77,6 +77,7 @@ export function prompt() {
 		if (message === "clear") console.clear();
 
 		if (message.startsWith("yank")) {
+			clientModules.silent = true;
 			broadcast(message);
 		}
 
@@ -142,6 +143,13 @@ function runScript(scriptName) {
 				);
 			}
 		});
+		prompt();
+	});
+}
+
+export function saveFile(fileName, data) {
+	fs.writeFile(fileName, data, (err) => {
+		console.log("\nThe file was saved!");
 		prompt();
 	});
 }
