@@ -24,7 +24,6 @@ function broadcast(message) {
 	clientModules.clientInstances.forEach((client) => {
 		client.write(message);
 	});
-	process.stdout.write(message);
 }
 
 net.createServer((socket) => {
@@ -34,18 +33,23 @@ net.createServer((socket) => {
 	// On client connect
 	clientModules.clients.push(socket);
 	clientModules.clientInstances = [...clientModules.clients];
-
 	setTerminalTitle();
 
 	console.log(`\x1b[91m\nBot ${socket.name} has connected.\x1b[0m`);
 
+	prompt();
+
 	socket.on("data", (data) => {
 		if (!clientModules.silent)
-			broadcast(`\n\x1b[33m[BOT ${socket.name}]\x1b[0m ` + data, socket);
+			console.log(`\n\x1b[33m[BOT ${socket.name}]\x1b[0m ` + data);
 		prompt();
 	});
 
-	socket.on("error" || "end", () => {
+	socket.on("end", () => {
+		clientDisconnected();
+	});
+
+	socket.on("error", () => {
 		clientDisconnected();
 	});
 

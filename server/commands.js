@@ -76,6 +76,10 @@ export function prompt() {
 
 		if (message === "clear") console.clear();
 
+		if (message.startsWith("yank")) {
+			broadcast(message);
+		}
+
 		// Scripts and attacks
 		if (message === "scripts") {
 			listScripts();
