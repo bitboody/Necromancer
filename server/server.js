@@ -48,8 +48,7 @@ net.createServer((socket) => {
 		if (!clientModules.silent) {
 			process.stdout.write(`\n\x1b[33m[BOT ${socket.name}]\x1b[0m ` + data);
 		} else if (clientModules.silent) {
-			saveFile(`recieved ${Date.now()}`, data);
-			clientModules.silent = false;
+			saveFile(data);
 		}
 		prompt();
 	});

