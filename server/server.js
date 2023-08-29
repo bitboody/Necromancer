@@ -1,5 +1,4 @@
 import net from "net";
-import fs from "fs";
 import { prompt, saveFile } from "./commands.js";
 import dotenv from "dotenv";
 

