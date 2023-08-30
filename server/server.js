@@ -4,15 +4,14 @@ import dotenv from "dotenv";
 
 dotenv.config({ path: "../config/.env" });
 
-let clients, clientInstances, silent, yanking;
+let clients, clientInstances, silent, logging;
 
 const clientModules = {
 	clients: (clients = []),
 	clientInstances: clientInstances,
 	silent: (silent = false),
-	yanking: (yanking = false),
+	logging: (logging = false)
 };
-
 const PORT = process.env.PORT;
 const IP = process.env.IP;
 
@@ -23,7 +22,6 @@ setTerminalTitle();
 
 function broadcast(message) {
 	clientModules.clientInstances.forEach((client) => {
-		if (message.startsWith("yank")) clientModules.yanking = true;
 		client.write(message);
 	});
 }
@@ -45,8 +43,8 @@ net.createServer((socket) => {
 		const dataStr = data.toString();
 
 		if (!clientModules.silent) {
-			process.stdout.write(`\n\x1b[33m[BOT ${socket.name}]\x1b[0m ` + data);
-		} else if (clientModules.silent) {
+			console.log(`\n\x1b[33m[BOT ${socket.name}]\x1b[0m ` + data);
+		} if (clientModules.logging) {
 			saveFile(data);
 		}
 		prompt();

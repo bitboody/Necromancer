@@ -74,14 +74,13 @@ Here is a list of some commands:
 | exec      | Executes shell commands remotely            | exec (command)                             |
 | clear     | Clears the terminal                         | clear                                      |
 | instances | Limits number of machines running a command | instances (number)                         |
-| logging   | Log the output to seperate files            | logging (boolean)                          |
+| logging   | Log output to text files                    | logging (boolean)                          |
 | run       | Runs custom scripts you have                | run (script name)                          |
 | scripts   | Lists custom script you have                | scripts                                    |
-| scripts   | Select one bot to contro                    | select                                     |
-| scripts   | Select one bot to contro                    | silent (boolean)                           |
+| select    | Select one bot to control                   | select                                     |
+| silent    | Silent output coming from bots              | silent (boolean)                           |
 | slowloris | Slowloris DDOS attack                       | slowloris (ip) (port) (duration) (sockets) |
 | yank      | Steal a file from a victim's machine        | yank (file name)                           |
-
 
 ---------------
 
