@@ -1,5 +1,5 @@
 import readline from "readline";
-import fs from "fs";
+import * as fs from "fs";
 import { clientModules, broadcast } from "./server.js";
 
 const rl = readline.createInterface({
@@ -51,18 +51,33 @@ export function prompt() {
 			}
 		}
 
+		if (message.startsWith("logging")) {
+			if (message === "logging")
+				console.log(`logging: ${clientModules.logging}`);
+			else if (commandArgs.first === "true") {
+				clientModules.logging = true;
+				clientModules.silent = true;
+			} else {
+				clientModules.logging = false;
+				clientModules.silent = false;
+			}
+		}
+
 		if (message === "clear") console.clear();
 
 		if (message.startsWith("yank")) {
-			clientModules.logging = true;
-			clientModules.silent = true;
+			if (!clientModules.logging) {
+				console.log("Please enable logging to use this feature");
+				return prompt();
+			}
 			if (message === "yank")
 				console.log("Please provide arugments: yank (file name)");
-			else if (clientModules.clientInstances.length > 1)
-				return console.log(
+			else if (clientModules.clientInstances.length > 1) {
+				console.log(
 					"You can only use this command on one machine at a time"
 				);
-			else if (commandArgs.first !== undefined) {
+				return prompt();
+			} else if (commandArgs.first !== undefined) {
 				if (clientModules.logging) {
 					fileNum++;
 					broadcast(message);
@@ -99,11 +114,7 @@ export function prompt() {
 			}, duration);
 		}
 
-		if (message.startsWith("exec")) {
-			broadcast(message);
-			clientModules.logging = false;
-			clientModules.silent = false;
-		}
+		if (message.startsWith("exec")) broadcast(message);
 
 		return prompt();
 	});
@@ -140,6 +151,14 @@ function runScript(scriptName) {
 }
 
 export function saveFile(chunk) {
+	let timer;
 	const writeStream = fs.createWriteStream(`file ${fileNum}`, { flags: "a" });
+	let tempChunk = chunk;
+
 	writeStream.write(chunk);
+	if (tempChunk === chunk) clearTimeout(timer);
+
+	timer = setTimeout(() => {
+		writeStream.end();
+	}, 3000);
 }

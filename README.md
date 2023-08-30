@@ -74,6 +74,7 @@ Here is a list of some commands:
 | exec      | Executes shell commands remotely            | exec (command)                             |
 | clear     | Clears the terminal                         | clear                                      |
 | instances | Limits number of machines running a command | instances (number)                         |
+| logging   | Log output to text files                    | logging (boolean)                          |
 | run       | Runs custom scripts you have                | run (script name)                          |
 | scripts   | Lists custom script you have                | scripts                                    |
 | select    | Select one bot to control                   | select                                     |

