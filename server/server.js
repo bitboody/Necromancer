@@ -10,7 +10,7 @@ const clientModules = {
 	clients: (clients = []),
 	clientInstances: clientInstances,
 	silent: (silent = false),
-	logging: (logging = false)
+	logging: (logging = false),
 };
 const PORT = process.env.PORT;
 const IP = process.env.IP;
@@ -44,7 +44,8 @@ net.createServer((socket) => {
 
 		if (!clientModules.silent) {
 			console.log(`\n\x1b[33m[BOT ${socket.name}]\x1b[0m ` + data);
-		} if (clientModules.logging) {
+		}
+		if (clientModules.logging) {
 			saveFile(data);
 		}
 		prompt();
