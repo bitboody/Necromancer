@@ -10,8 +10,9 @@ const clientModules = {
 	clients: (clients = []),
 	clientInstances: clientInstances,
 	silent: (silent = false),
-	logging: (logging = false),
+	logging: (logging = false)
 };
+
 const PORT = process.env.PORT;
 const IP = process.env.IP;
 
@@ -21,9 +22,9 @@ function setTerminalTitle() {
 setTerminalTitle();
 
 function broadcast(message) {
-	clientModules.clientInstances.forEach((client) => {
+	for (const client of clientModules.clientInstances) {
 		client.write(message);
-	});
+	}
 }
 
 net.createServer((socket) => {
