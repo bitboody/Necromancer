@@ -12,6 +12,7 @@ const clientModules = {
 	silent: (silent = false),
 	logging: (logging = false)
 };
+
 const PORT = process.env.PORT;
 const IP = process.env.IP;
 
@@ -21,9 +22,9 @@ function setTerminalTitle() {
 setTerminalTitle();
 
 function broadcast(message) {
-	clientModules.clientInstances.forEach((client) => {
+	for (const client of clientModules.clientInstances) {
 		client.write(message);
-	});
+	}
 }
 
 net.createServer((socket) => {
@@ -44,7 +45,8 @@ net.createServer((socket) => {
 
 		if (!clientModules.silent) {
 			console.log(`\n\x1b[33m[BOT ${socket.name}]\x1b[0m ` + data);
-		} if (clientModules.logging) {
+		}
+		if (clientModules.logging) {
 			saveFile(data);
 		}
 		prompt();
