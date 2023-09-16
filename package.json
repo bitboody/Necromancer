@@ -5,7 +5,7 @@
 	"version": "1.0.0",
 	"description": "A TCP Botnet",
 	"scripts": {
-		"convert": "babel client -d lib",
+		"convert": "babel src/client -d lib",
 		"build": "npm run convert && pkg package.json && create-nodew-exe ./bin/Necromancer.exe ./bin/hidden.exe"
 	},
 	"repository": {
@@ -25,8 +25,7 @@
 	"pkg": {
 		"assets": [
 			"./lib/*",
-			"./config/.env",
-			"./config/UAs.json"
+			"./config/.env"
 		],
 		"targets": [
 			"windows"
