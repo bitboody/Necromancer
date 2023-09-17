@@ -85,14 +85,6 @@ export function prompt() {
 			}
 		}
 
-		if (message === "scripts") {
-			listScripts();
-		}
-
-		if (message.startsWith("run")) {
-			runScript(args.first);
-		}
-
 		if (message.startsWith("slowloris")) {
 			if (message === "slowloris")
 				console.log(
@@ -107,36 +99,6 @@ export function prompt() {
 		if (message.startsWith("exec")) broadcast(message);
 
 		return prompt();
-	});
-}
-
-const scriptsDir = "../../config/scripts";
-
-function listScripts() {
-	fs.readdir(scriptsDir, (err, files) => {
-		console.log("\nList of scripts in script dir:");
-		files.forEach((file) => {
-			if (file.includes(".cmd")) console.log(`\x1b[34m${file}\x1b[0m`);
-		});
-		prompt();
-	});
-}
-
-function runScript(scriptName) {
-	fs.readdir(scriptsDir, (err, files) => {
-		files.forEach((file) => {
-			if (file === scriptName) {
-				fs.readFile(
-					`${scriptsDir}/${scriptName}`,
-					"utf8",
-					(err, data) => {
-						console.log("\x1b[91mRunning script...\x1b[0m");
-						broadcast(`exec ${data}`);
-					}
-				);
-			}
-		});
-		prompt();
 	});
 }
 
