@@ -75,8 +75,6 @@ Here is a list of some commands:
 | clear     | Clears the terminal                         | clear                                      |
 | instances | Limits number of machines running a command | instances (number)                         |
 | logging   | Log output to text files                    | logging (boolean)                          |
-| run       | Runs custom scripts you have                | run (script name)                          |
-| scripts   | Lists custom script you have                | scripts                                    |
 | select    | Select one bot to control                   | select                                     |
 | silent    | Silent output coming from bots              | silent (boolean)                           |
 | slowloris | Slowloris DDOS attack                       | slowloris (ip) (port) (duration) (sockets) |
@@ -105,7 +103,6 @@ The project also had help using:
 <h2 id="roadmap">Roadmap:</h2>
 
 - [X] Add an instances option that limits how many machines will run a command.
-- [X] Add a script run command.
 - [X] Add DDOS attack feature (any kind).
 - [X] Download files from a victim's computer.
 - [ ] Upload files to a victim's computer.
