@@ -29,13 +29,12 @@ export function prompt() {
 				clientModules.clientInstances = [...clientModules.clients];
 				clientModules.clientInstances =
 					clientModules.clientInstances.slice(0, args.first);
-			}
+			} else if (args.first === "all")
+				clientModules.clientInstances = [...clientModules.clients];
 		}
 
-		if (args.first === "all")
-			clientModules.clientInstances = [...clientModules.clients];
-
 		if (message.startsWith("select")) {
+			clientModules.clientInstances = [...clientModules.clients];
 			clientModules.clientInstances = Array(
 				clientModules.clientInstances[args.first]
 			).filter((i) => i !== undefined);
