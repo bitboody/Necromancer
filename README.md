@@ -1,6 +1,6 @@
 <div align="center">
 <h1>Necromancer</h1>
-Simple botnet made for educational purposes
+Botnet made for educational purposes
 <br>
 <br>
 <img src="https://img.shields.io/github/license/brplcc/Necromancer">
@@ -58,11 +58,6 @@ create-nodew-exe <src> <dst>
 Use example.env as reference and make sure to add the dotenv file at:
 - config/.env
 
-You can have your own shell scripts to run at this directory:
-- config/scripts/
-
-Just use the 'convert.ps1' file to convert your Powershell script to a one line file (kinda buggy).
-
 ---------------
 
 <h2 id="commands">Commands:</h2>
@@ -90,7 +85,7 @@ This repository contains both the C&C server and the client/malware.
 
 <h2 id="credit">Credit:</h2>
 
-Special thanks to [Looseman](https://github.com/glitch-911) and [Scrippy](https://github.com/Scrippy) for testing. and [ProtogenDelta](https://github.com/ProtogenDelta) for helping me properly understand how basic networking works and with code quality.
+Special thanks to [Looseman](https://github.com/glitch-911) and [Scrippy](https://github.com/Scrippy) for helping me with testing and debugging.
 
 The project also had help using:
 

