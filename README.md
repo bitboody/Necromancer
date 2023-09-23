@@ -91,7 +91,6 @@ The project also had help using:
 
 - A modified version of yosif111's [Slowloris implementation.](https://github.com/yosif111/Slowloris)
 - creationix's [TCP based chat server](https://gist.github.com/creationix/707146) as a starting template for the server.
-- nickadam's [PS1 script to a single line cmd file](https://gist.github.com/nickadam/2a0db76bf3e32008a934ee3f675e8776) script.
 
 ---------------
 
