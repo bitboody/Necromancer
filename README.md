@@ -24,7 +24,7 @@ Botnet made for educational purposes
 <h2 id="prerequisites">Prerequisites:</h2>
 • <a href="https://nodejs.org/en/download">Node.js</a> for the runtime environment.
 <br/>
-• <a href="https://github.com/babel/babel">Babel</a> for compiling to ES2015.
+• <a href="https://github.com/babel/babel">Babel</a> for compiling to ES5.
 <br/>
 • <a href="https://github.com/vercel/pkg">pkg</a> for compiling the client to an executable.
 <br/>
