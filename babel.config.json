@@ -4,6 +4,7 @@
 		[
 			"inline-dotenv",
 			{
+				
 				"path": "./config/.env"
 			}
 		]
