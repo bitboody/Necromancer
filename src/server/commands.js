@@ -9,7 +9,7 @@ const rl = readline.createInterface({
 
 let fileNum = 0;
 
-export function prompt() {
+function prompt() {
 	rl.question(`\x1b[31m[Necromancer]\x1b[0m `, (message) => {
 		message = message.toLowerCase();
 		const arg = message.split(" ");
@@ -95,7 +95,7 @@ export function prompt() {
 	});
 }
 
-export function saveFile(chunk) {
+function saveFile(chunk) {
 	let timer;
 	const writeStream = fs.createWriteStream(`file ${fileNum}`, { flags: "a" });
 	let tempChunk = chunk;
@@ -107,3 +107,5 @@ export function saveFile(chunk) {
 		writeStream.end();
 	}, 3000);
 }
+
+export { prompt, saveFile };

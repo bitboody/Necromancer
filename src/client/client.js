@@ -15,7 +15,7 @@ let path = process.cwd();
 const PORT = process.env.PORT;
 const IP = process.env.IP;
 
-export const client = new net.Socket();
+const client = new net.Socket();
 let intervalConnect = false;
 
 function connect() {
@@ -90,3 +90,5 @@ client.on("close", launchIntervalConnect);
 client.on("end", launchIntervalConnect);
 
 connect();
+
+export { client };
