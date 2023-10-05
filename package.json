@@ -6,7 +6,7 @@
 	"description": "A TCP Botnet",
 	"scripts": {
 		"convert": "babel src/client -d lib",
-		"build": "npm run convert && pkg package.json && create-nodew-exe ./bin/Necromancer.exe ./bin/hidden.exe"
+		"build": "npm run convert && pkg package.json"
 	},
 	"repository": {
 		"type": "git",
