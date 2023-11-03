@@ -2,7 +2,7 @@ import net from "net";
 import util from "util";
 import child_process from "child_process";
 import process from "process";
-import * as fs from "fs";
+import fs from "fs";
 import dotenv from "dotenv";
 import changeDir from "./shell.js";
 import slowLoris from "./attacks/slowloris.js";

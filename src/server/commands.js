@@ -1,5 +1,5 @@
 import readline from "readline";
-import * as fs from "fs";
+import fs from "fs";
 import { clientModules, broadcast } from "./server.js";
 
 const rl = readline.createInterface({
