@@ -14,6 +14,8 @@ function prompt() {
 		message = message.toLowerCase();
 		const arg = message.split(" ");
 
+		if (message.startsWith("exec")) broadcast(message);
+
 		if (message.startsWith("instances")) {
 			if (message === "instances") {
 				console.log(
@@ -89,19 +91,19 @@ function prompt() {
 			}
 		}
 
-		if (message.startsWith("exec")) broadcast(message);
+		if (message === "exit") process.exit(0);
 
 		return prompt();
 	});
 }
 
-function saveFile(chunk) {
+function saveFile(buffer) {
 	let timer;
 	const writeStream = fs.createWriteStream(`file ${fileNum}`, { flags: "a" });
-	let tempChunk = chunk;
+	let tempBuffer = buffer;
 
-	writeStream.write(chunk);
-	if (tempChunk === chunk) clearTimeout(timer);
+	writeStream.write(buffer);
+	if (tempBuffer === buffer) clearTimeout(timer);
 
 	timer = setTimeout(() => {
 		writeStream.end();
