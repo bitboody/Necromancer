@@ -53,7 +53,7 @@ async function execute(command) {
 		command,
 		{ cwd: path, windowsHide: true },
 		(e, stdout, stderr) => {
-			client.write(`${stdout}\n`);
+			if (stdout) client.write(`${stdout}\n`);
 		}
 	);
 }
