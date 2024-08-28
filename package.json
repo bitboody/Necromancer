@@ -1,5 +1,5 @@
 {
-	"name": "Necromancer",
+	"name": "necromancer",
 	"type": "module",
 	"bin": "./lib/client.js",
 	"version": "1.0.0",
@@ -10,15 +10,15 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/brplcc/botnet.git"
+		"url": "git+https://github.com/bitboody/botnet.git"
 	},
 	"keywords": [],
-	"author": "brplcc",
+	"author": "bitboody",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/brplcc/botnet/issues"
+		"url": "https://github.com/bitboody/botnet/issues"
 	},
-	"homepage": "https://github.com/brplcc/botnet#readme",
+	"homepage": "https://github.com/bitboody/botnet#readme",
 	"dependencies": {
 		"dotenv": "^16.3.1"
 	},
